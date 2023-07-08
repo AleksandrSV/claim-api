@@ -55,7 +55,7 @@ databaseChangeLog:
                   value: "Mike"
               - column:
                   name: "status"
-                  value: "Open"
+                  value: "NEW"
               - column:
                   name: "status_reason"
                   value: "New claim"
@@ -161,7 +161,7 @@ databaseChangeLog:
                   value: "Urgent"
               - column:
                   name: "status"
-                  value: "Open"
+                  value: "NEW"
               - column:
                   name: "status_reason"
                   value: "0"

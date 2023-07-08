@@ -1,4 +1,23 @@
 databaseChangeLog:
+  - - changeSet:
+        id: "create-sequence-claims"
+        author: "awatlove"
+        changes:
+          - createSequence:
+              sequenceName: "claims_id_seq"
+              startValue: 2
+              incrementBy: 1
+              minValue: 1
+          - createSequence:
+              sequenceName: "clients_id_seq"
+              startValue: 2
+              incrementBy: 1
+              minValue: 1
+          - createSequence:
+              sequenceName: "status_history_id_seq"
+              startValue: 2
+              incrementBy: 1
+              minValue: 1
   - changeSet:
       id: "create-table-documents"
       author: "awatlove"
@@ -44,6 +63,7 @@ databaseChangeLog:
                   constraints:
                     primaryKey: true
                     nullable: false
+                    defaultValueSequenceNext: "claims_id_seq"
 
               - column:
                   name: "created_date"
@@ -160,6 +180,7 @@ databaseChangeLog:
                   constraints:
                     primaryKey: true
                     nullable: false
+                    defaultValueSequenceNext: "clients_id_seq"
 
               - column:
                   name: "global_company_id"
@@ -206,6 +227,7 @@ databaseChangeLog:
                   constraints:
                     primaryKey: true
                     nullable: false
+                    defaultValueSequenceNext: "status_history_id_seq"
 
               - column:
                   name: "updated_date"
