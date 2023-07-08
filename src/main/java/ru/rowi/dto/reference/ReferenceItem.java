@@ -23,6 +23,4 @@ public class ReferenceItem {
         this.text = text;
         this.reasons = reasons;
     }
-
-    // Getters and setters
 }

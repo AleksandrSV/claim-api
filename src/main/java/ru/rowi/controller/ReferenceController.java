@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ru.rowi.dto.reference.ReferenceResponse;
 
-import javax.persistence.Access;
 
 @RestController
 @RequestMapping("/references")
