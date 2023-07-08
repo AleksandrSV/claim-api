@@ -1,4 +1,7 @@
 package ru.rowi.repository;
 
-public class ClientRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+import ru.rowi.model.Client;
+
+public interface ClientRepository extends JpaRepository<Client, Long> {
 }
