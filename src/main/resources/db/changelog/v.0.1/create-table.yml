@@ -1,0 +1,277 @@
+databaseChangeLog:
+  - changeSet:
+      id: "create-table-documents"
+      author: "awatlove"
+      changes:
+        - createTable:
+            tableName: "documents"
+            columns:
+              - column:
+                  name: "id"
+                  type: "UUID"
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+
+              - column:
+                  name: "name"
+                  type: "VARCHAR(255)"
+                  constraints:
+                    nullable: false
+              - column:
+                  name: "size"
+                  type: "BIGINT"
+                  constraints:
+                    nullable: false
+              - column:
+                  name: "claim_id"
+                  type: "BIGINT"
+                  constraints:
+                    nullable: false
+
+
+  - changeSet:
+      id: "create-table-claims"
+      author: "awatlove"
+      changes:
+        - createTable:
+            tableName: "claims"
+            columns:
+              - column:
+                  name: "id"
+                  type: "BIGINT"
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+
+              - column:
+                  name: "created_date"
+                  type: "TIMESTAMP"
+                  constraints:
+                    nullable: false
+              - column:
+                  name: "updated_date"
+                  type: "TIMESTAMP"
+                  constraints:
+                    nullable: false
+              - column:
+                  name: "created_by"
+                  type: "VARCHAR(255)"
+                  constraints:
+                    nullable: false
+              - column:
+                  name: "updated_by"
+                  type: "VARCHAR(255)"
+                  constraints:
+                    nullable: false
+              - column:
+                  name: "assignee"
+                  type: "VARCHAR(255)"
+                  constraints:
+                    nullable: true
+              - column:
+                  name: "status"
+                  type: "VARCHAR(255)"
+                  constraints:
+                    nullable: false
+              - column:
+                  name: "status_reason"
+                  type: "VARCHAR(255)"
+                  constraints:
+                    nullable: false
+              - column:
+                  name: "pause_till"
+                  type: "TIMESTAMP"
+                  constraints:
+                    nullable: true
+              - column:
+                  name: "category"
+                  type: "VARCHAR(255)"
+                  constraints:
+                    nullable: false
+              - column:
+                  name: "channel"
+                  type: "VARCHAR(255)"
+                  constraints:
+                    nullable: true
+              - column:
+                  name: "initiator_type"
+                  type: "VARCHAR(255)"
+                  constraints:
+                    nullable: true
+              - column:
+                  name: "is_first_line"
+                  type: "BIT"
+                  constraints:
+                    nullable: true
+              - column:
+                  name: "claim_type"
+                  type: "VARCHAR(255)"
+                  constraints:
+                    nullable: true
+              - column:
+                  name: "claim_theme"
+                  type: "VARCHAR(255)"
+                  constraints:
+                    nullable: true
+              - column:
+                  name: "service_count"
+                  type: "INT"
+                  constraints:
+                    nullable: true
+              - column:
+                  name: "priority"
+                  type: "VARCHAR(255)"
+                  constraints:
+                    nullable: true
+              - column:
+                  name: "priority_reason"
+                  type: "VARCHAR(255)"
+                  constraints:
+                    nullable: true
+              - column:
+                  name: "description"
+                  type: "VARCHAR(255)"
+                  constraints:
+                    nullable: true
+              - column:
+                  name: "comment"
+                  type: "VARCHAR(255)"
+                  constraints:
+                    nullable: true
+              - column:
+                  name: "client_id"
+                  type: "BIGINT"
+                  constraints:
+                    nullable: true
+
+  - changeSet:
+      id: "create-table-clients"
+      author: "awatlove"
+      changes:
+        - createTable:
+            tableName: "clients"
+            columns:
+              - column:
+                  name: "id"
+                  type: "BIGINT"
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+
+              - column:
+                  name: "global_company_id"
+                  type: "BIGINT"
+                  constraints:
+                    nullable: true
+              - column:
+                  name: "inn"
+                  type: "VARCHAR(255)"
+                  constraints:
+                    nullable: false
+              - column:
+                  name: "kpp"
+                  type: "VARCHAR(255)"
+                  constraints:
+                    nullable: true
+              - column:
+                  name: "orgn"
+                  type: "VARCHAR(255)"
+                  constraints:
+                    nullable: false
+              - column:
+                  name: "full_name"
+                  type: "VARCHAR(255)"
+                  constraints:
+                    nullable: false
+              - column:
+                  name: "short_name"
+                  type: "VARCHAR(255)"
+                  constraints:
+                    nullable: false
+
+  - changeSet:
+      id: "create-table-status_history"
+      author: "awatlove"
+      changes:
+        - createTable:
+            tableName: "status_history"
+            columns:
+              - column:
+                  name: "id"
+                  type: "BIGINT"
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+
+              - column:
+                  name: "updated_date"
+                  type: "TIMESTAMP"
+                  constraints:
+                    nullable: false
+              - column:
+                  name: "updated_by"
+                  type: "VARCHAR(255)"
+                  constraints:
+                    nullable: false
+              - column:
+                  name: "priority"
+                  type: "VARCHAR(255)"
+                  constraints:
+                    nullable: false
+              - column:
+                  name: "priority_reason"
+                  type: "VARCHAR(255)"
+                  constraints:
+                    nullable: true
+              - column:
+                  name: "status"
+                  type: "VARCHAR(255)"
+                  constraints:
+                    nullable: false
+              - column:
+                  name: "status_reason"
+                  type: "BIGINT"
+                  constraints:
+                    nullable: true
+              - column:
+                  name: "comment"
+                  type: "VARCHAR(255)"
+                  constraints:
+                    nullable: true
+              - column:
+                  name: "claim_id"
+                  type: "BIGINT"
+                  constraints:
+                    nullable: false
+
+
+
+
+
+  - changeSet:
+      author: "awatlove"
+      id: "add_fk_constraint"
+      changes:
+        - addForeignKeyConstraint:
+            baseTableName: "documents"
+            baseColumnNames: "claim_id"
+            constraintName: "fk_documents_claims"
+            referencedTableName: "claims"
+            referencedColumnNames: "id"
+        - addForeignKeyConstraint:
+            baseTableName: "claims"
+            baseColumnNames: "client_id"
+            constraintName: "fk_claims_clients"
+            referencedTableName: "clients"
+            referencedColumnNames: "id"
+        - addForeignKeyConstraint:
+            baseTableName: "status_history"
+            baseColumnNames: "claim_id"
+            constraintName: "fk_status_history_claims"
+            referencedTableName: "claims"
+            referencedColumnNames: "id"

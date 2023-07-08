@@ -1,0 +1,170 @@
+databaseChangeLog:
+  - changeSet:
+      id: "insert-data-documents"
+      author: "awatlove"
+      changes:
+        - insert:
+            tableName: "documents"
+            columns:
+              - column:
+                  name: "id"
+                  value: "1"
+              - column:
+                  name: "name"
+                  value: "Document 1"
+              - column:
+                  name: "size"
+                  value: "1024"
+              - column:
+                  name: "claim_id"
+                  value: "1"
+        - insert:
+            tableName: "documents"
+            columns:
+              - column:
+                  name: "id"
+                  value: "2"
+              - column:
+                  name: "name"
+                  value: "Document 2"
+              - column:
+                  name: "size"
+                  value: "2048"
+              - column:
+                  name: "claim_id"
+                  value: "1"
+
+  - changeSet:
+      id: "insert-data-claims"
+      author: "awatlove"
+      changes:
+        - insert:
+            tableName: "claims"
+            columns:
+              - column:
+                  name: "id"
+                  value: "1"
+              - column:
+                  name: "created_date"
+                  value: "2023-07-08 10:00:00"
+              - column:
+                  name: "updated_date"
+                  value: "2023-07-08 10:00:00"
+              - column:
+                  name: "created_by"
+                  value: "John"
+              - column:
+                  name: "updated_by"
+                  value: "Jane"
+              - column:
+                  name: "assignee"
+                  value: "Mike"
+              - column:
+                  name: "status"
+                  value: "Open"
+              - column:
+                  name: "status_reason"
+                  value: "New claim"
+              - column:
+                  name: "pause_till"
+                  value: "2023-07-10 10:00:00"
+              - column:
+                  name: "category"
+                  value: "General"
+              - column:
+                  name: "channel"
+                  value: "Phone"
+              - column:
+                  name: "initiator_type"
+                  value: "Customer"
+              - column:
+                  name: "is_first_line"
+                  value: "1"
+              - column:
+                  name: "claim_type"
+                  value: "Complaint"
+              - column:
+                  name: "claim_theme"
+                  value: "Product"
+              - column:
+                  name: "service_count"
+                  value: "2"
+              - column:
+                  name: "priority"
+                  value: "High"
+              - column:
+                  name: "priority_reason"
+                  value: "Urgent"
+              - column:
+                  name: "description"
+                  value: "This is a claim description."
+              - column:
+                  name: "comment"
+                  value: "Additional comment"
+              - column:
+                  name: "client_id"
+                  value: "1"
+
+  - changeSet:
+      id: "insert-data-clients"
+      author: "awatlove"
+      changes:
+        - insert:
+            tableName: "clients"
+            columns:
+              - column:
+                  name: "id"
+                  value: "1"
+              - column:
+                  name: "global_company_id"
+                  value: "123"
+              - column:
+                  name: "inn"
+                  value: "123456789"
+              - column:
+                  name: "kpp"
+                  value: "987654321"
+              - column:
+                  name: "orgn"
+                  value: "ORG123"
+              - column:
+                  name: "full_name"
+                  value: "Client 1"
+              - column:
+                  name: "short_name"
+                  value: "C1"
+
+  - changeSet:
+      id: "insert-data-status_history"
+      author: "awatlove"
+      changes:
+        - insert:
+            tableName: "status_history"
+            columns:
+              - column:
+                  name: "id"
+                  value: "1"
+              - column:
+                  name: "updated_date"
+                  value: "2023-07-08 10:00:00"
+              - column:
+                  name: "updated_by"
+                  value: "John"
+              - column:
+                  name: "priority"
+                  value: "High"
+              - column:
+                  name: "priority_reason"
+                  value: "Urgent"
+              - column:
+                  name: "status"
+                  value: "Open"
+              - column:
+                  name: "status_reason"
+                  value: "New status"
+              - column:
+                  name: "comment"
+                  value: "Status update comment"
+              - column:
+                  name: "claim_id"
+                  value: "1"
