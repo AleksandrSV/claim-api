@@ -1,22 +1,22 @@
 package ru.rowi.model;
 
-
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import ru.rowi.dto.State;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
-@Data
+@Getter
+@Setter
 @Entity
 @Table(name = "status_history")
 public class StatusHistory {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "status_history_id_seq")
-    @SequenceGenerator(name = "status_history", sequenceName = "status_history_id_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Timestamp updatedDate;
+    private LocalDateTime updatedDate;
     private String updatedBy;
     private String priority;
     private String priorityReason;

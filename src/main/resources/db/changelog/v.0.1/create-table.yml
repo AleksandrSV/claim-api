@@ -1,23 +1,4 @@
 databaseChangeLog:
-  - - changeSet:
-        id: "create-sequence-claims"
-        author: "awatlove"
-        changes:
-          - createSequence:
-              sequenceName: "claims_id_seq"
-              startValue: 2
-              incrementBy: 1
-              minValue: 1
-          - createSequence:
-              sequenceName: "clients_id_seq"
-              startValue: 2
-              incrementBy: 1
-              minValue: 1
-          - createSequence:
-              sequenceName: "status_history_id_seq"
-              startValue: 2
-              incrementBy: 1
-              minValue: 1
   - changeSet:
       id: "create-table-documents"
       author: "awatlove"
@@ -34,7 +15,7 @@ databaseChangeLog:
 
               - column:
                   name: "name"
-                  type: "VARCHAR(255)"
+                  type: "VARCHAR"
                   constraints:
                     nullable: false
               - column:
@@ -63,7 +44,6 @@ databaseChangeLog:
                   constraints:
                     primaryKey: true
                     nullable: false
-                    defaultValueSequenceNext: "claims_id_seq"
 
               - column:
                   name: "created_date"
@@ -77,27 +57,27 @@ databaseChangeLog:
                     nullable: false
               - column:
                   name: "created_by"
-                  type: "VARCHAR(255)"
+                  type: "VARCHAR"
                   constraints:
                     nullable: false
               - column:
                   name: "updated_by"
-                  type: "VARCHAR(255)"
+                  type: "VARCHAR"
                   constraints:
                     nullable: false
               - column:
                   name: "assignee"
-                  type: "VARCHAR(255)"
+                  type: "VARCHAR"
                   constraints:
                     nullable: true
               - column:
                   name: "status"
-                  type: "VARCHAR(255)"
+                  type: "VARCHAR"
                   constraints:
                     nullable: false
               - column:
                   name: "status_reason"
-                  type: "VARCHAR(255)"
+                  type: "VARCHAR"
                   constraints:
                     nullable: false
               - column:
@@ -107,17 +87,17 @@ databaseChangeLog:
                     nullable: true
               - column:
                   name: "category"
-                  type: "VARCHAR(255)"
+                  type: "VARCHAR"
                   constraints:
                     nullable: false
               - column:
                   name: "channel"
-                  type: "VARCHAR(255)"
+                  type: "VARCHAR"
                   constraints:
                     nullable: true
               - column:
                   name: "initiator_type"
-                  type: "VARCHAR(255)"
+                  type: "VARCHAR"
                   constraints:
                     nullable: true
               - column:
@@ -127,12 +107,12 @@ databaseChangeLog:
                     nullable: true
               - column:
                   name: "claim_type"
-                  type: "VARCHAR(255)"
+                  type: "VARCHAR"
                   constraints:
                     nullable: true
               - column:
                   name: "claim_theme"
-                  type: "VARCHAR(255)"
+                  type: "VARCHAR"
                   constraints:
                     nullable: true
               - column:
@@ -142,22 +122,22 @@ databaseChangeLog:
                     nullable: true
               - column:
                   name: "priority"
-                  type: "VARCHAR(255)"
+                  type: "VARCHAR"
                   constraints:
                     nullable: true
               - column:
                   name: "priority_reason"
-                  type: "VARCHAR(255)"
+                  type: "VARCHAR"
                   constraints:
                     nullable: true
               - column:
                   name: "description"
-                  type: "VARCHAR(255)"
+                  type: "VARCHAR"
                   constraints:
                     nullable: true
               - column:
                   name: "comment"
-                  type: "VARCHAR(255)"
+                  type: "VARCHAR"
                   constraints:
                     nullable: true
               - column:
@@ -180,7 +160,6 @@ databaseChangeLog:
                   constraints:
                     primaryKey: true
                     nullable: false
-                    defaultValueSequenceNext: "clients_id_seq"
 
               - column:
                   name: "global_company_id"
@@ -189,27 +168,27 @@ databaseChangeLog:
                     nullable: true
               - column:
                   name: "inn"
-                  type: "VARCHAR(255)"
+                  type: "VARCHAR"
                   constraints:
                     nullable: false
               - column:
                   name: "kpp"
-                  type: "VARCHAR(255)"
+                  type: "VARCHAR"
                   constraints:
                     nullable: true
               - column:
                   name: "orgn"
-                  type: "VARCHAR(255)"
+                  type: "VARCHAR"
                   constraints:
                     nullable: false
               - column:
                   name: "full_name"
-                  type: "VARCHAR(255)"
+                  type: "VARCHAR"
                   constraints:
                     nullable: false
               - column:
                   name: "short_name"
-                  type: "VARCHAR(255)"
+                  type: "VARCHAR"
                   constraints:
                     nullable: false
 
@@ -227,7 +206,6 @@ databaseChangeLog:
                   constraints:
                     primaryKey: true
                     nullable: false
-                    defaultValueSequenceNext: "status_history_id_seq"
 
               - column:
                   name: "updated_date"
@@ -236,22 +214,22 @@ databaseChangeLog:
                     nullable: false
               - column:
                   name: "updated_by"
-                  type: "VARCHAR(255)"
+                  type: "VARCHAR"
                   constraints:
                     nullable: false
               - column:
                   name: "priority"
-                  type: "VARCHAR(255)"
+                  type: "VARCHAR"
                   constraints:
                     nullable: false
               - column:
                   name: "priority_reason"
-                  type: "VARCHAR(255)"
+                  type: "VARCHAR"
                   constraints:
                     nullable: true
               - column:
                   name: "status"
-                  type: "VARCHAR(255)"
+                  type: "VARCHAR"
                   constraints:
                     nullable: false
               - column:
@@ -261,7 +239,7 @@ databaseChangeLog:
                     nullable: true
               - column:
                   name: "comment"
-                  type: "VARCHAR(255)"
+                  type: "VARCHAR"
                   constraints:
                     nullable: true
               - column:

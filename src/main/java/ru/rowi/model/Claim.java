@@ -1,21 +1,22 @@
 package ru.rowi.model;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import ru.rowi.dto.State;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
-@Data
+@Getter
+@Setter
 @Entity
 @Table(name = "claims")
 public class Claim {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "claims_id_seq")
-    @SequenceGenerator(name = "claims", sequenceName = "claims_id_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Timestamp createdDate;
-    private Timestamp updatedDate;
+    private LocalDateTime createdDate;
+    private LocalDateTime updatedDate;
     private String createdBy;
     private String updatedBy;
     private String assignee;
@@ -23,7 +24,7 @@ public class Claim {
     @Enumerated(EnumType.STRING)
     private State status;
     private String statusReason;
-    private Timestamp pauseTill;
+    private LocalDateTime pauseTill;
     private String category;
     private String channel;
     private String initiatorType;
