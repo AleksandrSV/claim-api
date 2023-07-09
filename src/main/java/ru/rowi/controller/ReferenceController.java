@@ -9,7 +9,7 @@ import ru.rowi.dto.reference.ReferenceResponse;
 
 
 @RestController
-@RequestMapping("/references")
+@RequestMapping("/api/references")
 public class ReferenceController {
     @Autowired
     ReferenceResponse referenceResponse;

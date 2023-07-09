@@ -1,12 +1,16 @@
 package ru.rowi.dto.reference;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
-@Data
+@Getter
+@Setter
 @Component
 public class ReferenceResponse {
     private List<ReferenceItem> categories;
@@ -20,56 +24,51 @@ public class ReferenceResponse {
 
     ReferenceResponse (){
         this.categories = new ArrayList<>();
-        categories.add(new ReferenceItem(ReferenceEnum.INCOMING.getCode(), ReferenceEnum.INCOMING.getText()));
-        categories.add(new ReferenceItem(ReferenceEnum.OUTGOING.getCode(), ReferenceEnum.OUTGOING.getText()));
+        categories.add(new ReferenceItem(CategoriesRefEnum.INCOMING.getCode(), CategoriesRefEnum.INCOMING.getText()));
+        categories.add(new ReferenceItem(CategoriesRefEnum.OUTGOING.getCode(), CategoriesRefEnum.OUTGOING.getText()));
 
         // Channels
         this.channels = new ArrayList<>();
-        channels.add(new ReferenceItem(ReferenceEnum.CHAT.getCode(), ReferenceEnum.CHAT.getText()));
-        channels.add(new ReferenceItem(ReferenceEnum.PHONE.getCode(), ReferenceEnum.PHONE.getText()));
-        channels.add(new ReferenceItem(ReferenceEnum.EMAIL.getCode(), ReferenceEnum.EMAIL.getText()));
+        channels.add(new ReferenceItem(ChannelsRefEnum.CHAT.getCode(), ChannelsRefEnum.CHAT.getText()));
+        channels.add(new ReferenceItem(ChannelsRefEnum.PHONE.getCode(), ChannelsRefEnum.PHONE.getText()));
+        channels.add(new ReferenceItem(ChannelsRefEnum.EMAIL.getCode(), ChannelsRefEnum.EMAIL.getText()));
 
         // Initiator Types
         this.initiatorTypes = new ArrayList<>();
-        initiatorTypes.add(new ReferenceItem(ReferenceEnum.CLIENT.getCode(), ReferenceEnum.CLIENT.getText()));
-        initiatorTypes.add(new ReferenceItem(ReferenceEnum.NOT_CLIENT.getCode(), ReferenceEnum.NOT_CLIENT.getText()));
-        initiatorTypes.add(new ReferenceItem(ReferenceEnum.PRODUCT.getCode(), ReferenceEnum.PRODUCT.getText()));
-        initiatorTypes.add(new ReferenceItem(ReferenceEnum.DELIVERY.getCode(), ReferenceEnum.DELIVERY.getText()));
-        initiatorTypes.add(new ReferenceItem(ReferenceEnum.OTHER.getCode(), ReferenceEnum.OTHER.getText()));
+        initiatorTypes.add(new ReferenceItem(InitiatorTypeRefEnum.CLIENT.getCode(), InitiatorTypeRefEnum.CLIENT.getText()));
+        initiatorTypes.add(new ReferenceItem(InitiatorTypeRefEnum.NOT_CLIENT.getCode(), InitiatorTypeRefEnum.NOT_CLIENT.getText()));
+        initiatorTypes.add(new ReferenceItem(InitiatorTypeRefEnum.PRODUCT.getCode(), InitiatorTypeRefEnum.PRODUCT.getText()));
+        initiatorTypes.add(new ReferenceItem(InitiatorTypeRefEnum.DELIVERY.getCode(), InitiatorTypeRefEnum.DELIVERY.getText()));
+        initiatorTypes.add(new ReferenceItem(InitiatorTypeRefEnum.OTHER.getCode(), InitiatorTypeRefEnum.OTHER.getText()));
 
         // Divisions
         this.divisions = new ArrayList<>();
-        divisions.add(new ReferenceItem(ReferenceEnum.SELLPLUS.getCode(), ReferenceEnum.SELLPLUS.getText()));
-        divisions.add(new ReferenceItem(ReferenceEnum.KIK.getCode(), ReferenceEnum.KIK.getText()));
-        divisions.add(new ReferenceItem(ReferenceEnum.GUARANTEE.getCode(), ReferenceEnum.GUARANTEE.getText()));
-        divisions.add(new ReferenceItem(ReferenceEnum.FACTORING.getCode(), ReferenceEnum.FACTORING.getText()));
+        divisions.add(new ReferenceItem(DivisionsRefEnum.SELLPLUS.getCode(), DivisionsRefEnum.SELLPLUS.getText()));
+        divisions.add(new ReferenceItem(DivisionsRefEnum.KIK.getCode(), DivisionsRefEnum.KIK.getText()));
+        divisions.add(new ReferenceItem(DivisionsRefEnum.GUARANTEE.getCode(), DivisionsRefEnum.GUARANTEE.getText()));
+        divisions.add(new ReferenceItem(DivisionsRefEnum.FACTORING.getCode(), DivisionsRefEnum.FACTORING.getText()));
 
 
         // Priority
         this.priority = new ArrayList<>();
-        priority.add(new ReferenceItem(ReferenceEnum.CRITICAL.getCode(), ReferenceEnum.CRITICAL.getText()));
-        priority.add(new ReferenceItem(ReferenceEnum.HIGH.getCode(), ReferenceEnum.HIGH.getText()));
-        priority.add(new ReferenceItem(ReferenceEnum.MEDIUM.getCode(), ReferenceEnum.MEDIUM.getText()));
-        priority.add(new ReferenceItem(ReferenceEnum.LOW.getCode(), ReferenceEnum.LOW.getText()));
-        priority.add(new ReferenceItem(ReferenceEnum.PAUSE.getCode(), ReferenceEnum.PAUSE.getText()));
+        priority.add(new ReferenceItem(PriorityRefEnum.CRITICAL.getCode(), PriorityRefEnum.CRITICAL.getText()));
+        priority.add(new ReferenceItem(PriorityRefEnum.HIGH.getCode(), PriorityRefEnum.HIGH.getText()));
+        priority.add(new ReferenceItem(PriorityRefEnum.MEDIUM.getCode(), PriorityRefEnum.MEDIUM.getText()));
+        priority.add(new ReferenceItem(PriorityRefEnum.LOW.getCode(), PriorityRefEnum.LOW.getText()));
+        priority.add(new ReferenceItem(PriorityRefEnum.PAUSE.getCode(), PriorityRefEnum.PAUSE.getText()));
 
         // Statuses
         this.statuses = new ArrayList<>();
-        statuses.add(new ReferenceItem(ReferenceEnum.DRAFT.getCode(), ReferenceEnum.DRAFT.getText()));
-        statuses.add(new ReferenceItem(ReferenceEnum.NEW.getCode(), ReferenceEnum.NEW.getText()));
-        statuses.add(new ReferenceItem(ReferenceEnum.PENDING.getCode(), ReferenceEnum.PENDING.getText()));
-        statuses.add(new ReferenceItem(ReferenceEnum.IN_PROGRESS.getCode(), ReferenceEnum.IN_PROGRESS.getText()));
-        statuses.add(new ReferenceItem(ReferenceEnum.DONE.getCode(), ReferenceEnum.DONE.getText()));
+        statuses.add(new ReferenceItem(StatusesRefEnum.DRAFT.getCode(), StatusesRefEnum.DRAFT.getText()));
+        statuses.add(new ReferenceItem(StatusesRefEnum.NEW.getCode(), StatusesRefEnum.NEW.getText()));
+        statuses.add(new ReferenceItem(StatusesRefEnum.PENDING.getCode(), StatusesRefEnum.PENDING.getText()));
+        statuses.add(new ReferenceItem(StatusesRefEnum.IN_PROGRESS.getCode(), StatusesRefEnum.IN_PROGRESS.getText()));
+        statuses.add(new ReferenceItem(StatusesRefEnum.DONE.getCode(), StatusesRefEnum.DONE.getText()));
 
-        List<ReferenceItem> doneReasons = new ArrayList<>();
-        doneReasons.add(new ReferenceItem(ReferenceEnum.DONE.getCode(), "Закрыто"));
-        doneReasons.add(new ReferenceItem(ReferenceEnum.FORWARDED.getCode(), "Переведено в другое подразделение"));
+        List<ReferenceItem> doneReasons = StatusesRefEnum.DONE.getReasons();
         statuses.get(statuses.size() - 1).setReasons(doneReasons);
 
-        List<ReferenceItem> rejectedReasons = new ArrayList<>();
-        rejectedReasons.add(new ReferenceItem(ReferenceEnum.INITIATOR_REJECTED.getCode(), "Отказ инициатора"));
-        rejectedReasons.add(new ReferenceItem(ReferenceEnum.WRONG_CREATED.getCode(), "Ошибочно заведено"));
-        rejectedReasons.add(new ReferenceItem(ReferenceEnum.DUPLICATE.getCode(), "Дубликат"));
-        statuses.add(new ReferenceItem(ReferenceEnum.REJECTED.getCode(), ReferenceEnum.REJECTED.getText(), rejectedReasons));
+        List<ReferenceItem> rejectedReasons = StatusesRefEnum.REJECTED.getReasons();
+        statuses.add(new ReferenceItem(StatusesRefEnum.REJECTED.getCode(), StatusesRefEnum.REJECTED.getText(), rejectedReasons));
     }
 }
