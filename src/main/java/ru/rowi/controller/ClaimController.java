@@ -1,6 +1,5 @@
 package ru.rowi.controller;
 
-import jdk.jfr.ContentType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,8 +15,8 @@ public class ClaimController {
 
     // 3
     @GetMapping("/{id}")
-    public ResponseEntity<?> getClaimById(@PathVariable String id){
-        return ResponseEntity.ok("Получить обращение");
+    public ResponseEntity<?> getClaimById(@PathVariable Long id){
+        return ResponseEntity.ok("Получить обращение "+ id);
     }
 
     // 4

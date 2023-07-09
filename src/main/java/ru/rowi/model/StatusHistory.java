@@ -3,6 +3,7 @@ package ru.rowi.model;
 import lombok.Getter;
 import lombok.Setter;
 import ru.rowi.dto.State;
+import ru.rowi.dto.reference.PriorityRefEnum;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -18,8 +19,11 @@ public class StatusHistory {
 
     private LocalDateTime updatedDate;
     private String updatedBy;
-    private String priority;
+
+    @Enumerated(EnumType.STRING)
+    private PriorityRefEnum priority;
     private String priorityReason;
+
     @Enumerated(EnumType.STRING)
     private State status;
     private String statusReason;
@@ -28,11 +32,6 @@ public class StatusHistory {
     @ManyToOne
     @JoinColumn(name = "claim_id")
     private Claim claimId;
-
-
-
-
-
 
 
 }

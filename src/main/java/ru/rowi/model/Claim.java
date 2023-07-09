@@ -3,6 +3,7 @@ package ru.rowi.model;
 import lombok.Getter;
 import lombok.Setter;
 import ru.rowi.dto.State;
+import ru.rowi.dto.reference.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -22,17 +23,27 @@ public class Claim {
     private String assignee;
 
     @Enumerated(EnumType.STRING)
-    private State status;
+    private StatusesRefEnum status;
     private String statusReason;
     private LocalDateTime pauseTill;
-    private String category;
-    private String channel;
-    private String initiatorType;
+
+    @Enumerated(EnumType.STRING)
+    private CategoriesRefEnum category;
+
+    @Enumerated(EnumType.STRING)
+    private ChannelsRefEnum channel;
+
+    @Enumerated(EnumType.STRING)
+    private InitiatorTypeRefEnum initiatorType;
     private Boolean isFirstLine;
+    // in progress
     private String claimType;
+    // in progress
     private String claimTheme;
     private Integer serviceCount;
-    private String priority;
+
+    @Enumerated(EnumType.STRING)
+    private PriorityRefEnum priority;
     private String priorityReason;
     private String description;
     private String comment;

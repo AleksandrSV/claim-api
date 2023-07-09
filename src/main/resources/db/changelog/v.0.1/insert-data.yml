@@ -64,13 +64,13 @@ databaseChangeLog:
                   value: "2023-07-10 10:00:00"
               - column:
                   name: "category"
-                  value: "General"
+                  value: "INCOMING"
               - column:
                   name: "channel"
-                  value: "Phone"
+                  value: "PHONE"
               - column:
                   name: "initiator_type"
-                  value: "Customer"
+                  value: "CLIENT"
               - column:
                   name: "is_first_line"
                   value: "1"
@@ -85,7 +85,7 @@ databaseChangeLog:
                   value: "2"
               - column:
                   name: "priority"
-                  value: "High"
+                  value: "MEDIUM"
               - column:
                   name: "priority_reason"
                   value: "Urgent"
@@ -155,7 +155,7 @@ databaseChangeLog:
                   value: "John"
               - column:
                   name: "priority"
-                  value: "High"
+                  value: "MEDIUM"
               - column:
                   name: "priority_reason"
                   value: "Urgent"
