@@ -2,7 +2,6 @@ package ru.rowi.model;
 
 import lombok.Getter;
 import lombok.Setter;
-import ru.rowi.dto.State;
 import ru.rowi.dto.reference.*;
 
 import javax.persistence.*;

@@ -2,8 +2,8 @@ package ru.rowi.model;
 
 import lombok.Getter;
 import lombok.Setter;
-import ru.rowi.dto.State;
 import ru.rowi.dto.reference.PriorityRefEnum;
+import ru.rowi.dto.reference.StatusesRefEnum;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -25,7 +25,7 @@ public class StatusHistory {
     private String priorityReason;
 
     @Enumerated(EnumType.STRING)
-    private State status;
+    private StatusesRefEnum status;
     private String statusReason;
     private String comment;
 
