@@ -1,11 +1,18 @@
 package ru.rowi.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import ru.rowi.model.Claim;
+import ru.rowi.service.ClaimService;
+
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/claims")
 public class ClaimController {
+    @Autowired
+    private ClaimService claimService;
 
     // 2
     @GetMapping
@@ -16,7 +23,10 @@ public class ClaimController {
     // 3
     @GetMapping("/{id}")
     public ResponseEntity<?> getClaimById(@PathVariable Long id){
-        return ResponseEntity.ok("Получить обращение "+ id);
+        Optional<Claim> claim = claimService.getClaimById(id);
+        if(claim.isEmpty())
+            return ResponseEntity.status(404).body("Not found");
+        return ResponseEntity.ok(claim.get());
     }
 
     // 4
