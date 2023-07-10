@@ -102,7 +102,7 @@ databaseChangeLog:
                     nullable: true
               - column:
                   name: "is_first_line"
-                  type: "BIT"
+                  type: "BOOLEAN"
                   constraints:
                     nullable: true
               - column:

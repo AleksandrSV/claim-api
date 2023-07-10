@@ -73,7 +73,7 @@ databaseChangeLog:
                   value: "CLIENT"
               - column:
                   name: "is_first_line"
-                  value: "1"
+                  value: true
               - column:
                   name: "claim_type"
                   value: "Complaint"
