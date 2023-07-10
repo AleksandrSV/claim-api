@@ -1,11 +1,14 @@
 package ru.rowi.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import ru.rowi.dto.request.ClaimFilterRequest;
 import ru.rowi.model.Claim;
 import ru.rowi.service.ClaimService;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -16,8 +19,10 @@ public class ClaimController {
 
     // 2
     @GetMapping
-    public ResponseEntity<?> getClaims(){
-        return ResponseEntity.ok("Получить список обращений");
+    public ResponseEntity<?> getClaims(@RequestBody ClaimFilterRequest request) {
+        Page<Claim> claimsPage = claimService.getClaimsByFilters(request);
+        List<Claim> claimsList = claimsPage.getContent();
+        return ResponseEntity.ok(claimsList);
     }
 
     // 3
