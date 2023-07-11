@@ -48,8 +48,8 @@ public class ClaimSpecifications {
             if (request.getClientKpp() != null) {
                 predicate = criteriaBuilder.and(predicate, criteriaBuilder.equal(root.get("clientId").get("kpp"), request.getClientKpp()));
             }
-            if (request.getClientOrgn() != null) {
-                predicate = criteriaBuilder.and(predicate, criteriaBuilder.equal(root.get("clientId").get("orgn"), request.getClientOrgn()));
+            if (request.getClientOgrn() != null) {
+                predicate = criteriaBuilder.and(predicate, criteriaBuilder.equal(root.get("clientId").get("ogrn"), request.getClientOgrn()));
             }
 
             return predicate;

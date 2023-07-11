@@ -17,7 +17,7 @@ public class Client {
     private Long globalCompanyId;
     private String inn;
     private String kpp;
-    private String orgn;
+    private String ogrn;
     private String fullName;
     private String shortName;
 }

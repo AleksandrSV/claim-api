@@ -38,5 +38,5 @@ public class ClaimFilterRequest {
     private Long globalCompanyId;
     private String clientInn;
     private String clientKpp;
-    private String clientOrgn;
+    private String clientOgrn;
 }

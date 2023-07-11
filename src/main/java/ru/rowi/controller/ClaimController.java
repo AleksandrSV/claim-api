@@ -5,9 +5,11 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.rowi.dto.request.ClaimFilterRequest;
+import ru.rowi.dto.request.ClaimPostRequest;
 import ru.rowi.model.Claim;
 import ru.rowi.service.ClaimService;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -37,9 +39,10 @@ public class ClaimController {
     // 4
     // creating
     @PostMapping(produces = "application/json")
-    public ResponseEntity<?> createClaim(){
-        return ResponseEntity.ok("Создание обращения");
+    public ResponseEntity<?> createClaim(@RequestBody ClaimPostRequest request){
+        return claimService.createClaim(request, LocalDateTime.now(), "username");
     }
+
     // editing
     @PostMapping(value = "/{id}", produces = "application/json")
     public ResponseEntity<?> editClaim(@PathVariable String id){
