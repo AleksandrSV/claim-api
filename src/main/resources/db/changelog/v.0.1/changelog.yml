@@ -8,6 +8,6 @@ databaseChangeLog:
   - include:
       file: "create-table.yml"
       relativeToChangelogFile: true
-  - include:
-      file: "insert-data.yml"
-      relativeToChangelogFile: true
+#  - include:
+#      file: "insert-data.yml"
+#      relativeToChangelogFile: true

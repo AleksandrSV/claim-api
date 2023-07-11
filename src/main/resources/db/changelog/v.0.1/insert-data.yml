@@ -19,7 +19,7 @@ databaseChangeLog:
                   name: "kpp"
                   value: "987654321"
               - column:
-                  name: "orgn"
+                  name: "ogrn"
                   value: "ORG123"
               - column:
                   name: "full_name"
