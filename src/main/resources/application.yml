@@ -12,12 +12,15 @@ spring:
     hibernate:
       ddl-auto: none
 
-#security:
-#  config:
-#    password-flow: true
-#    authcode-flow: false
-#keycloak:
-#  auth-server-url: https://localhost:9090/auth
-#  realm: "test"
-#  resource: "test"
-#  bearer-only: true
+security:
+  config:
+    password-flow: true
+    authcode-flow: false
+keycloak:
+  auth-server-url: https://keycloak.yamakassi.ru/auth
+  realm: claimapi
+  resource: cocktailtest
+  bearer-only: true
+  ssl-required: external
+  use-resource-role-mappings: true
+
