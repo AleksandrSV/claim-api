@@ -9,6 +9,7 @@ import ru.rowi.dto.request.ClaimFilterRequest;
 import ru.rowi.dto.request.ClaimPostRequest;
 import ru.rowi.model.Claim;
 import ru.rowi.service.ClaimService;
+import ru.rowi.util.TokenUtil;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -19,6 +20,8 @@ import java.util.Optional;
 public class ClaimController {
     @Autowired
     private ClaimService claimService;
+    @Autowired
+    private TokenUtil tokenUtil;
 
     // 2
     @GetMapping
@@ -41,7 +44,7 @@ public class ClaimController {
     // creating
     @PostMapping(produces = "application/json")
     public ResponseEntity<?> createClaim(@RequestBody ClaimPostRequest request, KeycloakAuthenticationToken token){
-        String username = token.getAccount().getKeycloakSecurityContext().getToken().getPreferredUsername();
+        String username = tokenUtil.getUsername(token);
         return claimService.createClaim(request, LocalDateTime.now(), username);
     }
 
