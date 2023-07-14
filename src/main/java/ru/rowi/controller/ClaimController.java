@@ -1,5 +1,6 @@
 package ru.rowi.controller;
 
+import org.keycloak.adapters.springsecurity.token.KeycloakAuthenticationToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
@@ -39,8 +40,9 @@ public class ClaimController {
     // 4
     // creating
     @PostMapping(produces = "application/json")
-    public ResponseEntity<?> createClaim(@RequestBody ClaimPostRequest request){
-        return claimService.createClaim(request, LocalDateTime.now(), "username");
+    public ResponseEntity<?> createClaim(@RequestBody ClaimPostRequest request, KeycloakAuthenticationToken token){
+        String username = token.getAccount().getKeycloakSecurityContext().getToken().getPreferredUsername();
+        return claimService.createClaim(request, LocalDateTime.now(), username);
     }
 
     // editing
