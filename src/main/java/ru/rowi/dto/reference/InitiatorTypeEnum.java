@@ -1,6 +1,6 @@
 package ru.rowi.dto.reference;
 
-public enum InitiatorTypeRefEnum {
+public enum InitiatorTypeEnum {
     CLIENT("CLIENT", "Клиент"),
     NOT_CLIENT("NOT_CLIENT", "Не Клиент"),
     PRODUCT("PRODUCT", "Основной продукт"),
@@ -10,7 +10,7 @@ public enum InitiatorTypeRefEnum {
     private final String code;
     private final String text;
 
-    InitiatorTypeRefEnum(String code, String text) {
+    InitiatorTypeEnum(String code, String text) {
         this.code = code;
         this.text = text;
     }

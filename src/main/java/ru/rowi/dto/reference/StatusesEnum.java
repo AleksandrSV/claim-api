@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public enum StatusesRefEnum {
+public enum StatusesEnum {
     DRAFT("DRAFT", "Черновик"),
     NEW("NEW", "Новое"),
     PENDING("PENDING", "В ожидании"),
@@ -25,13 +25,13 @@ public enum StatusesRefEnum {
     private final String text;
     private final List<ReferenceItem> reasons;
 
-    StatusesRefEnum(String code, String text, ArrayList<ReferenceItem> reasons) {
+    StatusesEnum(String code, String text, ArrayList<ReferenceItem> reasons) {
         this.code = code;
         this.text = text;
         this.reasons = reasons;
     }
 
-    StatusesRefEnum(String code, String text) {
+    StatusesEnum(String code, String text) {
         this(code, text, null);
     }
 

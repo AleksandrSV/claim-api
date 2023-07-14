@@ -1,15 +1,14 @@
 package ru.rowi.dto.reference;
 
-public enum DivisionsRefEnum {
-    SELLPLUS("SELLPLUS", "Sellplus"),
-    KIK("KIK", "КИК"),
-    GUARANTEE("GUARANTEE", "ЦБГ"),
-    FACTORING("FACTORING", "Факторинг");
+public enum ChannelsEnum {
+    CHAT("CHAT", "Чат"),
+    PHONE("PHONE", "Телефон"),
+    EMAIL("EMAIL", "E-mail");
 
     private final String code;
     private final String text;
 
-    DivisionsRefEnum (String code, String text) {
+    ChannelsEnum(String code, String text) {
         this.code = code;
         this.text = text;
     }

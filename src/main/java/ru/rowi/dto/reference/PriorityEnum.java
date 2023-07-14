@@ -1,6 +1,6 @@
 package ru.rowi.dto.reference;
 
-public enum PriorityRefEnum {
+public enum PriorityEnum {
     CRITICAL("CRITICAL", "Критический"),
     HIGH("HIGH", "Высокий"),
     MEDIUM("MEDIUM", "Средний"),
@@ -10,7 +10,7 @@ public enum PriorityRefEnum {
     private final String code;
     private final String text;
 
-    PriorityRefEnum(String code, String text) {
+    PriorityEnum(String code, String text) {
         this.code = code;
         this.text = text;
     }

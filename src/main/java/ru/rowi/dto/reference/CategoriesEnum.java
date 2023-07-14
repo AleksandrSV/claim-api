@@ -1,13 +1,13 @@
 package ru.rowi.dto.reference;
 
-public enum CategoriesRefEnum {
+public enum CategoriesEnum {
     INCOMING("INCOMING", "Входящее"),
     OUTGOING("OUTGOING", "Исходящее");
 
     private final String code;
     private final String text;
 
-    CategoriesRefEnum(String code, String text) {
+    CategoriesEnum(String code, String text) {
         this.code = code;
         this.text = text;
     }
