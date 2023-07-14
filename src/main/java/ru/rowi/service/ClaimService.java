@@ -25,6 +25,9 @@ import java.util.Optional;
 @Service
 public class ClaimService {
     @Autowired
+    private RequestMapper mapper;
+
+    @Autowired
     private ClaimRepository repo;
 
     @Autowired
@@ -55,11 +58,11 @@ public class ClaimService {
     // 4
     public Long createClaim(ClaimPostRequest request, LocalDateTime localDateTime, String username) {
         if (request.getCategory() == null) throw new IllegalArgumentException("Does not exist:  category");
-        Claim claim = RequestMapper.postRequestToCreateClaim(request, localDateTime, username);
+        Claim claim = mapper.postRequestToCreateClaim(request, localDateTime, username);
         claim.setCreatedBy(username); // or from assignee
 
         if (request.getClient() != null) {
-            Client client = RequestMapper.postRequestToClient(request.getClient());
+            Client client = mapper.postRequestToClient(request.getClient());
             client = clientService.save(client);
             claim.setClientId(client);
         }
@@ -71,7 +74,7 @@ public class ClaimService {
             Document tmp;
             List<Document> documents = new ArrayList<>();
             for (int i =0; i<docReq.length; i++) {
-                tmp = RequestMapper.postRequestToDocument(docReq[i]);
+                tmp = mapper.postRequestToDocument(docReq[i]);
                 tmp.setClaimId(claim);
             }
             documentService.saveAll(documents);
