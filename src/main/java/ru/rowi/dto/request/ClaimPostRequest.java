@@ -1,20 +1,16 @@
 package ru.rowi.dto.request;
 
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
-import ru.rowi.dto.reference.CategoriesRefEnum;
-import ru.rowi.dto.reference.ChannelsRefEnum;
-import ru.rowi.dto.reference.InitiatorTypeRefEnum;
-import ru.rowi.dto.reference.PriorityRefEnum;
-
-import java.util.UUID;
+import ru.rowi.dto.reference.CategoriesEnum;
+import ru.rowi.dto.reference.ChannelsEnum;
+import ru.rowi.dto.reference.InitiatorTypeEnum;
+import ru.rowi.dto.reference.PriorityEnum;
 
 @Data
 public class ClaimPostRequest {
-    private CategoriesRefEnum category;
-    private ChannelsRefEnum channel;
-    private InitiatorTypeRefEnum initiatorType;
+    private CategoriesEnum category;
+    private ChannelsEnum channel;
+    private InitiatorTypeEnum initiatorType;
     private Boolean isFirstLine;
     // in progress
     private String claimType;
@@ -23,7 +19,7 @@ public class ClaimPostRequest {
     private String description;
     private String comment;
     private Integer serviceCount;
-    private PriorityRefEnum priority;
+    private PriorityEnum priority;
     private String priorityReason;
     // null ? username from Keycloak
     private String assignee;

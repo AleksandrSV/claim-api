@@ -25,8 +25,8 @@ public class RequestMapper {
             claim.setAssignee(username);
 
         // ?
-        claim.setStatus(StatusesRefEnum.DRAFT);
-        claim.setStatusReason(StatusesRefEnum.DRAFT.getCode());
+        claim.setStatus(StatusesEnum.DRAFT);
+        claim.setStatusReason(StatusesEnum.DRAFT.getCode());
 
         claim.setChannel(request.getChannel());
         claim.setInitiatorType(request.getInitiatorType());

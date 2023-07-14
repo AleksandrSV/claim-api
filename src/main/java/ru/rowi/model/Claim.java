@@ -22,18 +22,18 @@ public class Claim {
     private String assignee;
 
     @Enumerated(EnumType.STRING)
-    private StatusesRefEnum status;
+    private StatusesEnum status;
     private String statusReason;
     private LocalDateTime pauseTill;
 
     @Enumerated(EnumType.STRING)
-    private CategoriesRefEnum category;
+    private CategoriesEnum category;
 
     @Enumerated(EnumType.STRING)
-    private ChannelsRefEnum channel;
+    private ChannelsEnum channel;
 
     @Enumerated(EnumType.STRING)
-    private InitiatorTypeRefEnum initiatorType;
+    private InitiatorTypeEnum initiatorType;
     private Boolean isFirstLine;
     // in progress
     private String claimType;
@@ -42,7 +42,7 @@ public class Claim {
     private Integer serviceCount;
 
     @Enumerated(EnumType.STRING)
-    private PriorityRefEnum priority;
+    private PriorityEnum priority;
     private String priorityReason;
     private String description;
     private String comment;

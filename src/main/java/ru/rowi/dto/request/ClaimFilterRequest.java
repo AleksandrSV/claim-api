@@ -13,13 +13,13 @@ public class ClaimFilterRequest {
     private Integer pageSize;
 
     @Enumerated(EnumType.STRING)
-    private CategoriesRefEnum category;
+    private CategoriesEnum category;
 
     @Enumerated(EnumType.STRING)
-    private ChannelsRefEnum channel;
+    private ChannelsEnum channel;
 
     @Enumerated(EnumType.STRING)
-    private InitiatorTypeRefEnum initiatorType;
+    private InitiatorTypeEnum initiatorType;
 
     private Boolean isFirstLine;
     // in progress
@@ -28,10 +28,10 @@ public class ClaimFilterRequest {
     private String claimTheme;
 
     @Enumerated(EnumType.STRING)
-    private PriorityRefEnum priority;
+    private PriorityEnum priority;
 
     @Enumerated(EnumType.STRING)
-    private StatusesRefEnum status;
+    private StatusesEnum status;
     private String assignee;
 
     // client
