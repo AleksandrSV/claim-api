@@ -45,7 +45,7 @@ public class ClaimController {
     @PostMapping(produces = "application/json")
     public ResponseEntity<?> createClaim(@RequestBody ClaimPostRequest request, KeycloakAuthenticationToken token){
         String username = tokenUtil.getUsername(token);
-        return claimService.createClaim(request, LocalDateTime.now(), username);
+        return ResponseEntity.ok(claimService.createClaim(request, LocalDateTime.now(), username));
     }
 
     // editing

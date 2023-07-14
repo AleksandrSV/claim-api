@@ -53,8 +53,8 @@ public class ClaimService {
     }
 
     // 4
-    public ResponseEntity<?> createClaim(ClaimPostRequest request, LocalDateTime localDateTime, String username) {
-        if (request.getCategory() == null) return ResponseEntity.badRequest().body("Does not exist:  category");
+    public Long createClaim(ClaimPostRequest request, LocalDateTime localDateTime, String username) {
+        if (request.getCategory() == null) throw new IllegalArgumentException("Does not exist:  category");
         Claim claim = RequestMapper.postRequestToCreateClaim(request, localDateTime, username);
         claim.setCreatedBy(username); // or from assignee
 
@@ -78,7 +78,7 @@ public class ClaimService {
         }
 
 
-        return ResponseEntity.ok(claim.getId());
+        return claim.getId();
     }
 
 
