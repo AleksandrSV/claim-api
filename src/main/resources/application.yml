@@ -17,9 +17,9 @@ security:
     password-flow: true
     authcode-flow: false
 keycloak:
-  auth-server-url: https://keycloak.yamakassi.ru/auth
-  realm: claimapi
-  resource: cocktailtest
+  auth-server-url: https://keycloak.yamakassi.ru
+  realm: claim-api
+  resource: claim-api
   bearer-only: true
   ssl-required: external
   use-resource-role-mappings: true
