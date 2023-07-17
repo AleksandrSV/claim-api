@@ -18,8 +18,8 @@ security:
     authcode-flow: false
 keycloak:
   auth-server-url: https://keycloak.yamakassi.ru
-  realm: claim-api
-  resource: claim-api
+  realm: claimapi
+  resource: claimapi
   bearer-only: true
   ssl-required: external
   use-resource-role-mappings: true
