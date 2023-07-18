@@ -20,7 +20,6 @@ public class ClaimSpecifications {
             if (request.getInitiatorType() != null) {
                 predicate = criteriaBuilder.and(predicate, criteriaBuilder.equal(root.get("initiatorType"), request.getInitiatorType()));
             }
-
             if (request.getIsFirstLine() != null) {
                 predicate = criteriaBuilder.and(predicate, criteriaBuilder.equal(root.get("isFirstLine"), request.getIsFirstLine()));
             }
@@ -39,9 +38,8 @@ public class ClaimSpecifications {
             if (request.getAssignee() != null) {
                 predicate = criteriaBuilder.and(predicate, criteriaBuilder.equal(root.get("assignee"), request.getAssignee()));
             }
-            if (request.getGlobalCompanyId() != null) {
-                predicate = criteriaBuilder.and(predicate, criteriaBuilder.equal(root.get("clientId").get("globalCompanyId"), request.getGlobalCompanyId()));
-            }
+
+
             if (request.getClientInn() != null) {
                 predicate = criteriaBuilder.and(predicate, criteriaBuilder.equal(root.get("clientId").get("inn"), request.getClientInn()));
             }

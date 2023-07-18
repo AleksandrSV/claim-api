@@ -35,10 +35,12 @@ public class Claim {
     @Enumerated(EnumType.STRING)
     private InitiatorTypeEnum initiatorType;
     private Boolean isFirstLine;
-    // in progress
-    private String claimType;
-    // in progress
-    private String claimTheme;
+
+    @Enumerated(EnumType.STRING)
+    private ClaimTypesEnum claimType;
+
+    @Enumerated(EnumType.STRING)
+    private ClaimThemesEnum claimTheme;
     private Integer serviceCount;
 
     @Enumerated(EnumType.STRING)

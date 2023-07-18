@@ -70,5 +70,56 @@ public class ReferenceResponse {
 
         List<ReferenceItem> rejectedReasons = StatusesEnum.REJECTED.getReasons();
         statuses.add(new ReferenceItem(StatusesEnum.REJECTED.getCode(), StatusesEnum.REJECTED.getText(), rejectedReasons));
+
+        // ClaimTypes
+        this.claimTypes = new ArrayList<>();
+        claimTypes.add(new ReferenceItem(ClaimTypesEnum.ERROR.getCode(), ClaimTypesEnum.ERROR.getText()));
+        claimTypes.add(new ReferenceItem(ClaimTypesEnum.NAVIGATION.getCode(), ClaimTypesEnum.NAVIGATION.getText()));
+        claimTypes.add(new ReferenceItem(ClaimTypesEnum.INQUIRY.getCode(), ClaimTypesEnum.INQUIRY.getText()));
+        claimTypes.add(new ReferenceItem(ClaimTypesEnum.DATA_UPDATE.getCode(), ClaimTypesEnum.DATA_UPDATE.getText()));
+        claimTypes.add(new ReferenceItem(ClaimTypesEnum.CONSULTATION.getCode(), ClaimTypesEnum.CONSULTATION.getText()));
+        claimTypes.add(new ReferenceItem(ClaimTypesEnum.CLOSE_ACCOUNT.getCode(), ClaimTypesEnum.CLOSE_ACCOUNT.getText()));
+        claimTypes.add(new ReferenceItem(ClaimTypesEnum.CURRENCY_CONTROL.getCode(), ClaimTypesEnum.CURRENCY_CONTROL.getText()));
+        claimTypes.add(new ReferenceItem(ClaimTypesEnum.CB_REQUEST.getCode(), ClaimTypesEnum.CB_REQUEST.getText()));
+        claimTypes.add(new ReferenceItem(ClaimTypesEnum.NEW_SERVICE.getCode(), ClaimTypesEnum.NEW_SERVICE.getText()));
+        claimTypes.add(new ReferenceItem(ClaimTypesEnum.PROFILE_MANAGEMENT.getCode(), ClaimTypesEnum.PROFILE_MANAGEMENT.getText()));
+        claimTypes.add(new ReferenceItem(ClaimTypesEnum.UNKNOWN.getCode(), ClaimTypesEnum.UNKNOWN.getText()));
+        claimTypes.add(new ReferenceItem(ClaimTypesEnum.EXTRA_ACCOUNT.getCode(), ClaimTypesEnum.EXTRA_ACCOUNT.getText()));
+        claimTypes.add(new ReferenceItem(ClaimTypesEnum.TARIFF_CHANGE.getCode(), ClaimTypesEnum.TARIFF_CHANGE.getText()));
+        claimTypes.add(new ReferenceItem(ClaimTypesEnum.NOMINAL_PAYMENT.getCode(), ClaimTypesEnum.NOMINAL_PAYMENT.getText()));
+        claimTypes.add(new ReferenceItem(ClaimTypesEnum.CLAIM.getCode(), ClaimTypesEnum.CLAIM.getText()));
+        claimTypes.add(new ReferenceItem(ClaimTypesEnum.OTHER.getCode(), ClaimTypesEnum.OTHER.getText()));
+
+        // ClaimThemes
+        this.claimThemes = new ArrayList<>();
+        claimThemes.add(new ReferenceItem(ClaimThemesEnum.IS_ROWI.getCode(), ClaimThemesEnum.IS_ROWI.getText()));
+        claimThemes.add(new ReferenceItem(ClaimThemesEnum.CHAT.getCode(), ClaimThemesEnum.CHAT.getText()));
+        claimThemes.add(new ReferenceItem(ClaimThemesEnum.IBANK.getCode(), ClaimThemesEnum.IBANK.getText()));
+        claimThemes.add(new ReferenceItem(ClaimThemesEnum.ACCOUNT_OPEN_INQUIRY.getCode(), ClaimThemesEnum.ACCOUNT_OPEN_INQUIRY.getText()));
+        claimThemes.add(new ReferenceItem(ClaimThemesEnum.CASH_FLOW_INQUIRY.getCode(), ClaimThemesEnum.CASH_FLOW_INQUIRY.getText()));
+        claimThemes.add(new ReferenceItem(ClaimThemesEnum.ACCOUNT_CLOSE_INQUIRY.getCode(), ClaimThemesEnum.ACCOUNT_CLOSE_INQUIRY.getText()));
+        claimThemes.add(new ReferenceItem(ClaimThemesEnum.CARD_INDEX_INQUIRY.getCode(), ClaimThemesEnum.CARD_INDEX_INQUIRY.getText()));
+        claimThemes.add(new ReferenceItem(ClaimThemesEnum.LOAN_DEBT_INQUIRY.getCode(), ClaimThemesEnum.LOAN_DEBT_INQUIRY.getText()));
+        claimThemes.add(new ReferenceItem(ClaimThemesEnum.EXCERPT.getCode(), ClaimThemesEnum.EXCERPT.getText()));
+        claimThemes.add(new ReferenceItem(ClaimThemesEnum.VISIT_TO_CLIENT.getCode(), ClaimThemesEnum.VISIT_TO_CLIENT.getText()));
+        claimThemes.add(new ReferenceItem(ClaimThemesEnum.NO_VISIT_TO_CLIENT.getCode(), ClaimThemesEnum.NO_VISIT_TO_CLIENT.getText()));
+        claimThemes.add(new ReferenceItem(ClaimThemesEnum.TARIFFS.getCode(), ClaimThemesEnum.TARIFFS.getText()));
+        claimThemes.add(new ReferenceItem(ClaimThemesEnum.DOCUMENTS.getCode(), ClaimThemesEnum.DOCUMENTS.getText()));
+        claimThemes.add(new ReferenceItem(ClaimThemesEnum.ACCOUNT_BLOCK.getCode(), ClaimThemesEnum.ACCOUNT_BLOCK.getText()));
+        claimThemes.add(new ReferenceItem(ClaimThemesEnum.PAYMENTS.getCode(), ClaimThemesEnum.PAYMENTS.getText()));
+        claimThemes.add(new ReferenceItem(ClaimThemesEnum.INTEREST_ON_BALANCE.getCode(), ClaimThemesEnum.INTEREST_ON_BALANCE.getText()));
+        claimThemes.add(new ReferenceItem(ClaimThemesEnum.INITIATED_BY_CLIENT.getCode(), ClaimThemesEnum.INITIATED_BY_CLIENT.getText()));
+        claimThemes.add(new ReferenceItem(ClaimThemesEnum.DOCUMENTS_REQUEST.getCode(), ClaimThemesEnum.DOCUMENTS_REQUEST.getText()));
+        claimThemes.add(new ReferenceItem(ClaimThemesEnum.BANK_SUPPORT_OF_CONTRACT.getCode(), ClaimThemesEnum.BANK_SUPPORT_OF_CONTRACT.getText()));
+        claimThemes.add(new ReferenceItem(ClaimThemesEnum.SUPPORT_OF_PREGIVEN_ACPT.getCode(), ClaimThemesEnum.SUPPORT_OF_PREGIVEN_ACPT.getText()));
+        claimThemes.add(new ReferenceItem(ClaimThemesEnum.CREATE_NEW_PROFILE.getCode(), ClaimThemesEnum.CREATE_NEW_PROFILE.getText()));
+        claimThemes.add(new ReferenceItem(ClaimThemesEnum.BLOCK_PROFILE.getCode(), ClaimThemesEnum.BLOCK_PROFILE.getText()));
+        claimThemes.add(new ReferenceItem(ClaimThemesEnum.UNBLOCK_PROFILE.getCode(), ClaimThemesEnum.UNBLOCK_PROFILE.getText()));
+        claimThemes.add(new ReferenceItem(ClaimThemesEnum.LEGAL_SUPPORT_REQUIRED.getCode(), ClaimThemesEnum.LEGAL_SUPPORT_REQUIRED.getText()));
+        claimThemes.add(new ReferenceItem(ClaimThemesEnum.LEGAL_SUPPORT_NOT_REQUIRED.getCode(), ClaimThemesEnum.LEGAL_SUPPORT_NOT_REQUIRED.getText()));
+        claimThemes.add(new ReferenceItem(ClaimThemesEnum.OTHER.getCode(), ClaimThemesEnum.OTHER.getText()));
+
+
+
     }
 }

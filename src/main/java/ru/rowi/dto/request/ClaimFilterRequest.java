@@ -22,10 +22,10 @@ public class ClaimFilterRequest {
     private InitiatorTypeEnum initiatorType;
 
     private Boolean isFirstLine;
-    // in progress
-    private String claimType;
-    // in progress
-    private String claimTheme;
+    @Enumerated(EnumType.STRING)
+    private ClaimTypesEnum claimType;
+    @Enumerated(EnumType.STRING)
+    private ClaimThemesEnum claimTheme;
 
     @Enumerated(EnumType.STRING)
     private PriorityEnum priority;
@@ -35,7 +35,6 @@ public class ClaimFilterRequest {
     private String assignee;
 
     // client
-    private Long globalCompanyId;
     private String clientInn;
     private String clientKpp;
     private String clientOgrn;
