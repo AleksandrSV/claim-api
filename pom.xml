@@ -161,6 +161,17 @@
         </dependencies>
     </dependencyManagement>
 
+    <repositories>
+        <repository>
+            <id>gitlab-maven</id>
+            <url>https://gitlab.service.rowi.tech/api/v4/groups/4/-/packages/maven</url>
+        </repository>
+        <repository>
+            <id>gitlab-maven-dbo</id>
+            <url>https://gitlab.service.rowi.tech/api/v4/groups/317/-/packages/maven</url>
+        </repository>
+    </repositories>
+
     <build>
         <plugins>
             <plugin>
