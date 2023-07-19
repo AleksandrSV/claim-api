@@ -31,7 +31,7 @@ public class ClaimService {
     private final ClaimRepository repo;
     private final ClientService clientService;
     private final TokenUtil tokenUtil;
-    private DocumentService documentService;
+    private final DocumentService documentService;
 
     // 2
     public Page<Claim> getClaimsByFilters(ClaimFilterRequest request) {

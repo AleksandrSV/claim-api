@@ -167,6 +167,11 @@ databaseChangeLog:
                   constraints:
                     nullable: true
               - column:
+                  name: "pl_company_id"
+                  type: "UUID"
+                  constraints:
+                    nullable: true
+              - column:
                   name: "inn"
                   type: "VARCHAR"
                   constraints:
