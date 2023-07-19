@@ -8,6 +8,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import tech.rowi.dbo.claimapi.dto.ClaimSpecifications;
+import tech.rowi.dbo.claimapi.dto.reference.StatusesEnum;
 import tech.rowi.dbo.claimapi.dto.request.ClaimFilterRequest;
 import tech.rowi.dbo.claimapi.dto.request.ClaimPostRequest;
 import tech.rowi.dbo.claimapi.dto.request.DocumentRequest;
@@ -18,7 +19,6 @@ import tech.rowi.dbo.claimapi.model.Document;
 import tech.rowi.dbo.claimapi.repository.ClaimRepository;
 import tech.rowi.dbo.claimapi.util.TokenUtil;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -54,13 +54,10 @@ public class ClaimService {
     }
 
     // 4
-    public Long createClaim(ClaimPostRequest request, LocalDateTime localDateTime) {
-        if (request.getCategory() == null) throw new IllegalArgumentException("Does not exist:  category");
-
-        String username = tokenUtil.getUsername();
-        Claim claim = mapper.postRequestToCreateClaim(request, localDateTime, username);
-        // Should be filled by Auditable
-        // claim.setCreatedBy(username); // or from assignee
+    public Long createClaim(ClaimPostRequest request) {
+        Claim claim = mapper.postRequestToCreateClaim(request);
+        claim.setStatus(StatusesEnum.NEW);
+        claim.setStatusReason(StatusesEnum.NEW.getCode());
 
         if (request.getClient() != null) {
             Client client = mapper.postRequestToClient(request.getClient());
@@ -74,9 +71,10 @@ public class ClaimService {
             DocumentRequest[] docReq = request.getDocuments();
             Document tmp;
             List<Document> documents = new ArrayList<>();
-            for (int i =0; i<docReq.length; i++) {
+            for (int i = 0; i < docReq.length; i++) {
                 tmp = mapper.postRequestToDocument(docReq[i]);
-                tmp.setClaimId(claim);
+                tmp.setClaim(claim);
+                documents.add(tmp);
             }
             documentService.saveAll(documents);
         }

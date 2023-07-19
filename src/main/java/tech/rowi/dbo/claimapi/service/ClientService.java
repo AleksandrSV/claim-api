@@ -1,16 +1,20 @@
 package tech.rowi.dbo.claimapi.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 import tech.rowi.dbo.claimapi.model.Client;
 import tech.rowi.dbo.claimapi.repository.ClientRepository;
 
 @Service
+@RequiredArgsConstructor
 public class ClientService {
-    @Autowired
-    private ClientRepository repo;
+    private final ClientRepository repo;
 
-    public Client save(Client client) {
+    public Client save(Client client){
+        if(repo.exists(Example.of(client))){
+            return repo.findOne(Example.of(client)).get();
+        }
         return repo.save(client);
     }
 }

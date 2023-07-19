@@ -27,7 +27,7 @@ public class StatusHistory {
     private String comment;
     @ManyToOne
     @JoinColumn(name = "claim_id")
-    private Claim claimId;
+    private Claim claim;
 
 
 }

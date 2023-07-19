@@ -1,7 +1,6 @@
 package tech.rowi.dbo.claimapi.controller;
 
-import org.keycloak.adapters.springsecurity.token.KeycloakAuthenticationToken;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -9,17 +8,15 @@ import tech.rowi.dbo.claimapi.dto.request.ClaimFilterRequest;
 import tech.rowi.dbo.claimapi.dto.request.ClaimPostRequest;
 import tech.rowi.dbo.claimapi.model.Claim;
 import tech.rowi.dbo.claimapi.service.ClaimService;
-import tech.rowi.dbo.claimapi.util.TokenUtil;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/api/claims")
 public class ClaimController {
-    @Autowired
-    private ClaimService claimService;
+    private final ClaimService claimService;
 
     // 2
     @GetMapping
@@ -42,7 +39,7 @@ public class ClaimController {
     // creating
     @PostMapping(produces = "application/json")
     public ResponseEntity<?> createClaim(@RequestBody ClaimPostRequest request){
-        return ResponseEntity.ok(claimService.createClaim(request, LocalDateTime.now()));
+        return ResponseEntity.ok(claimService.createClaim(request));
     }
 
     // editing

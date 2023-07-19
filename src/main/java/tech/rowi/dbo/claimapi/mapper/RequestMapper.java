@@ -9,28 +9,13 @@ import tech.rowi.dbo.claimapi.model.Claim;
 import tech.rowi.dbo.claimapi.model.Client;
 import tech.rowi.dbo.claimapi.model.Document;
 
-import java.time.LocalDateTime;
 
 @Component
 public class RequestMapper {
-    public Claim postRequestToCreateClaim(ClaimPostRequest request, LocalDateTime localDateTime, String username) {
+    public Claim postRequestToCreateClaim(ClaimPostRequest request) {
         Claim claim = new Claim();
         claim.setCategory(request.getCategory());
-        // Should be filled by Aufitable
-//        claim.setCreatedDate(localDateTime);
-//        claim.setUpdatedDate(localDateTime);
-        // ?
-//        claim.setCreatedBy(username);
-//        claim.setUpdatedBy(username); // or from assignee
-        if (request.getAssignee() != null)
-            claim.setAssignee(request.getAssignee());
-        else
-            claim.setAssignee(username);
-
-        // ?
-        claim.setStatus(StatusesEnum.DRAFT);
-        claim.setStatusReason(StatusesEnum.DRAFT.getCode());
-
+        claim.setAssignee(request.getAssignee());
         claim.setChannel(request.getChannel());
         claim.setInitiatorType(request.getInitiatorType());
         claim.setIsFirstLine(request.getIsFirstLine());
@@ -47,10 +32,11 @@ public class RequestMapper {
     public Client postRequestToClient(ClientRequest request) {
         Client client = new Client();
         client.setGlobalCompanyId(request.getGlobalCompanyId());
+        client.setPlCompanyId(request.getPlCompanyId());
         client.setInn(request.getInn());
         client.setKpp(request.getKpp());
         client.setOgrn(request.getOgrn());
-        client.setFullName(request.getOgrn());
+        client.setFullName(request.getFullName());
         client.setShortName(request.getShortName());
         return client;
     }

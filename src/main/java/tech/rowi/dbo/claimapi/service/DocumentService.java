@@ -1,6 +1,6 @@
 package tech.rowi.dbo.claimapi.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import tech.rowi.dbo.claimapi.model.Document;
 import tech.rowi.dbo.claimapi.repository.DocumentRepository;
@@ -8,9 +8,9 @@ import tech.rowi.dbo.claimapi.repository.DocumentRepository;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class DocumentService {
-    @Autowired
-    private DocumentRepository repo;
+    private final DocumentRepository repo;
 
     public Document save(Document document) {
         return repo.save(document);

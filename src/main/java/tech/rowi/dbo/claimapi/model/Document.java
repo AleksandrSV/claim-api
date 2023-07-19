@@ -17,6 +17,6 @@ public class Document {
     private Long size;
     @ManyToOne
     @JoinColumn(name = "claim_id")
-    private Claim claimId;
+    private Claim claim;
 
 }
