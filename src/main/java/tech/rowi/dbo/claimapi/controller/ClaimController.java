@@ -20,8 +20,6 @@ import java.util.Optional;
 public class ClaimController {
     @Autowired
     private ClaimService claimService;
-    @Autowired
-    private TokenUtil tokenUtil;
 
     // 2
     @GetMapping
@@ -43,9 +41,8 @@ public class ClaimController {
     // 4
     // creating
     @PostMapping(produces = "application/json")
-    public ResponseEntity<?> createClaim(@RequestBody ClaimPostRequest request, KeycloakAuthenticationToken token){
-        String username = tokenUtil.getUsername(token);
-        return ResponseEntity.ok(claimService.createClaim(request, LocalDateTime.now(), username));
+    public ResponseEntity<?> createClaim(@RequestBody ClaimPostRequest request){
+        return ResponseEntity.ok(claimService.createClaim(request, LocalDateTime.now()));
     }
 
     // editing

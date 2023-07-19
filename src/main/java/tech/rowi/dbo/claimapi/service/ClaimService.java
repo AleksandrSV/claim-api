@@ -1,5 +1,6 @@
 package tech.rowi.dbo.claimapi.service;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -15,6 +16,7 @@ import tech.rowi.dbo.claimapi.model.Claim;
 import tech.rowi.dbo.claimapi.model.Client;
 import tech.rowi.dbo.claimapi.model.Document;
 import tech.rowi.dbo.claimapi.repository.ClaimRepository;
+import tech.rowi.dbo.claimapi.util.TokenUtil;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -22,16 +24,13 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class ClaimService {
-    @Autowired
-    private RequestMapper mapper;
 
-    @Autowired
-    private ClaimRepository repo;
-
-    @Autowired
-    private ClientService clientService;
-    @Autowired
+    private final RequestMapper mapper;
+    private final ClaimRepository repo;
+    private final ClientService clientService;
+    private final TokenUtil tokenUtil;
     private DocumentService documentService;
 
     // 2
@@ -55,8 +54,10 @@ public class ClaimService {
     }
 
     // 4
-    public Long createClaim(ClaimPostRequest request, LocalDateTime localDateTime, String username) {
+    public Long createClaim(ClaimPostRequest request, LocalDateTime localDateTime) {
         if (request.getCategory() == null) throw new IllegalArgumentException("Does not exist:  category");
+
+        String username = tokenUtil.getUsername();
         Claim claim = mapper.postRequestToCreateClaim(request, localDateTime, username);
         // Should be filled by Auditable
         // claim.setCreatedBy(username); // or from assignee
