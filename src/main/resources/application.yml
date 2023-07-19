@@ -1,19 +1,29 @@
 spring:
+  cloud:
+    vault:
+      enabled: false
   liquibase:
     enabled: true
     change-log: classpath:db/changelog/db.changelog-master.yml
   datasource:
-    url: 'jdbc:postgresql://localhost:5432/claim-api'
-    username: 'postgres'
-    password: 'postgres'
-    driverClassName: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/claim-api
+    username: postgres
+    password: postgres
   jpa:
-    hibernate:
-      ddl-auto: none
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQL10Dialect
+    hibernate.ddl-auto: none
+    show-sql: true
+
+  jackson:
+    deserialization:
+      READ_UNKNOWN_ENUM_VALUES_AS_NULL: true
+
 security:
   config:
     password-flow: true
     authcode-flow: false
+
 keycloak:
   auth-server-url: https://keycloak.yamakassi.ru
   realm: claimapi
@@ -21,6 +31,7 @@ keycloak:
   bearer-only: true
   ssl-required: external
   use-resource-role-mappings: true
+
 springdoc:
   api-docs:
     path: /api-docs
