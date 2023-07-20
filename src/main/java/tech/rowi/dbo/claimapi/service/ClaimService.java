@@ -11,6 +11,7 @@ import tech.rowi.dbo.claimapi.dto.ClaimSpecifications;
 import tech.rowi.dbo.claimapi.dto.reference.StatusesEnum;
 import tech.rowi.dbo.claimapi.dto.request.ClaimFilterRequest;
 import tech.rowi.dbo.claimapi.dto.request.ClaimPostRequest;
+import tech.rowi.dbo.claimapi.dto.request.ClaimUpdateRequest;
 import tech.rowi.dbo.claimapi.dto.request.DocumentRequest;
 import tech.rowi.dbo.claimapi.mapper.RequestMapper;
 import tech.rowi.dbo.claimapi.model.Claim;
@@ -19,7 +20,9 @@ import tech.rowi.dbo.claimapi.model.Document;
 import tech.rowi.dbo.claimapi.repository.ClaimRepository;
 import tech.rowi.dbo.claimapi.util.TokenUtil;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -83,5 +86,27 @@ public class ClaimService {
         return claim.getId();
     }
 
+    //5
+    public Long updateClaim(ClaimUpdateRequest claimUpdateRequest, Long id) throws FileNotFoundException {
+        Claim claim = repo.findById(id).orElseThrow(()-> new FileNotFoundException("File not found"));
+        if (!claim.getAssignee().equals(tokenUtil.getUsername())) throw new IllegalArgumentException("Assignee != Username from token");
+
+        claim.setPriority(claimUpdateRequest.getPriority());
+        claim.setPriorityReason(claimUpdateRequest.getPriorityReason());
+        claim.setAssignee(claimUpdateRequest.getAssignee());
+        claim.setComment(claimUpdateRequest.getComment());
+
+        List<DocumentRequest> documentRequests = Arrays.asList(claimUpdateRequest.getDocuments());
+        List<Document> documents = new ArrayList<>();
+
+        for(DocumentRequest docReq: documentRequests){
+            documents.add(mapper.updateRequestToDocument(docReq, claim));
+        }
+
+        repo.save(claim);
+        documentService.saveAll(documents);
+
+        return claim.getId();
+    }
 
 }

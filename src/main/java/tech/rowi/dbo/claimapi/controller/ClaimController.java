@@ -6,9 +6,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import tech.rowi.dbo.claimapi.dto.request.ClaimFilterRequest;
 import tech.rowi.dbo.claimapi.dto.request.ClaimPostRequest;
+import tech.rowi.dbo.claimapi.dto.request.ClaimUpdateRequest;
 import tech.rowi.dbo.claimapi.model.Claim;
 import tech.rowi.dbo.claimapi.service.ClaimService;
 
+import java.io.FileNotFoundException;
 import java.util.List;
 import java.util.Optional;
 
@@ -50,8 +52,8 @@ public class ClaimController {
 
     // 5
     @PatchMapping(value = "/{id}/update", produces = "application/json")
-    public ResponseEntity<?> patchClaim(@PathVariable String id){
-        return ResponseEntity.ok("Обновление обращения");
+    public ResponseEntity<?> patchClaim(@RequestBody ClaimUpdateRequest claimUpdateRequest, @PathVariable Long id) throws FileNotFoundException {
+        return ResponseEntity.ok(claimService.updateClaim(claimUpdateRequest, id));
     }
 
     // 6

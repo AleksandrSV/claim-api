@@ -48,4 +48,13 @@ public class RequestMapper {
         doc.setSize(request.getSize());
         return doc;
     }
+
+    public Document updateRequestToDocument(DocumentRequest request, Claim claim){
+        Document doc = new Document();
+        doc.setId(request.getId());
+        doc.setName(request.getName());
+        doc.setSize(request.getSize());
+        doc.setClaim(claim);
+        return doc;
+    }
 }
