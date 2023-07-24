@@ -2,6 +2,7 @@ package tech.rowi.dbo.claimapi.model;
 
 import lombok.Getter;
 import lombok.Setter;
+import tech.rowi.dbo.claimapi.dto.audit.AuditableClaim;
 import tech.rowi.dbo.claimapi.dto.reference.*;
 
 import javax.persistence.*;
@@ -11,7 +12,7 @@ import java.time.LocalDateTime;
 @Setter
 @Entity
 @Table(name = "claims")
-public class Claim extends Auditable {
+public class Claim extends AuditableClaim {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

@@ -1,4 +1,4 @@
-package tech.rowi.dbo.claimapi.model;
+package tech.rowi.dbo.claimapi.dto.audit;
 
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -18,7 +18,7 @@ import java.time.LocalDateTime;
 @Setter(AccessLevel.PROTECTED)
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
-public abstract class Auditable {
+public abstract class AuditableClaim {
 
     @CreatedDate
     @Column(name = "created_date", updatable = false)

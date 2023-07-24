@@ -1,5 +1,6 @@
 package tech.rowi.dbo.claimapi.dto.request;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import tech.rowi.dbo.claimapi.dto.reference.*;
 
@@ -15,6 +16,7 @@ public class ClaimPostRequest {
     private String comment;
     private Integer serviceCount;
     private PriorityEnum priority;
+    @JsonProperty("priority_reason")
     private String priorityReason;
     private String assignee;
 
