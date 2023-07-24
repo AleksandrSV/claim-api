@@ -87,7 +87,7 @@ public class ClaimService {
 
     //5
     public Long updateClaim(ClaimUpdateRequest claimUpdateRequest, Long id) throws FileNotFoundException {
-        Claim claim = repo.findById(id).orElseThrow(()-> new FileNotFoundException("File not found"));
+        Claim claim = repo.findById(id).orElseThrow(() -> new FileNotFoundException("File not found"));
         if (!claim.getAssignee().equals(tokenUtil.getUsername())) throw new IllegalArgumentException("Assignee != Username from token");
 
         claim.setPriority(claimUpdateRequest.getPriority());
@@ -98,7 +98,7 @@ public class ClaimService {
         List<DocumentRequest> documentRequests = List.of(claimUpdateRequest.getDocuments());
         List<Document> documents = new ArrayList<>();
 
-        for(DocumentRequest docReq: documentRequests){
+        for (DocumentRequest docReq : documentRequests) {
             documents.add(mapper.updateRequestToDocument(docReq, claim));
         }
 
@@ -111,7 +111,7 @@ public class ClaimService {
 
     //6
     public Long assignClaim(Long id) throws FileNotFoundException {
-        Claim claim = repo.findById(id).orElseThrow(()-> new FileNotFoundException("File not found"));
+        Claim claim = repo.findById(id).orElseThrow(() -> new FileNotFoundException("File not found"));
         if (!(claim.getAssignee() == null)) throw new IllegalArgumentException("Assignee already exists");
         claim.setAssignee(tokenUtil.getUsername());
         claim.setStatus(StatusesEnum.IN_PROGRESS);
@@ -122,8 +122,9 @@ public class ClaimService {
 
     //7.1
     public Long reassignClaim(String assignee, Long id) throws FileNotFoundException {
-        Claim claim = repo.findById(id).orElseThrow(()-> new FileNotFoundException("File not found"));
-        if (claim.getAssignee() == null) throw new IllegalArgumentException("We cannot reassign the claim as it is not assigned to anyone");
+        Claim claim = repo.findById(id).orElseThrow(() -> new FileNotFoundException("File not found"));
+        if (claim.getAssignee() == null)
+            throw new IllegalArgumentException("We cannot reassign the claim as it is not assigned to anyone");
         claim.setAssignee(assignee);
         claim.setStatus(StatusesEnum.IN_PROGRESS);
         repo.save(claim);
@@ -133,8 +134,9 @@ public class ClaimService {
 
     //7.2
     public Long forwardClaim(ClaimForwardRequest claimForwardRequest, Long id) throws FileNotFoundException {
-        Claim claim = repo.findById(id).orElseThrow(()-> new FileNotFoundException("File not found"));
-        if (claim.getAssignee() == null) throw new IllegalArgumentException("We cannot reassign the claim as it is not assigned to anyone");
+        Claim claim = repo.findById(id).orElseThrow(() -> new FileNotFoundException("File not found"));
+        if (claim.getAssignee() == null)
+            throw new IllegalArgumentException("We cannot reassign the claim as it is not assigned to anyone");
         claim.setAssignee(claimForwardRequest.getAssignee().getCode());
         claim.setStatus(StatusesEnum.DONE); // Просят сделать CLOSED, возможно новый Enum
         claim.setComment(claimForwardRequest.getComment());
