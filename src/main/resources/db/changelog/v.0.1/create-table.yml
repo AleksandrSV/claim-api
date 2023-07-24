@@ -239,7 +239,7 @@ databaseChangeLog:
                     nullable: false
               - column:
                   name: "status_reason"
-                  type: "BIGINT"
+                  type: "VARCHAR"
                   constraints:
                     nullable: true
               - column:

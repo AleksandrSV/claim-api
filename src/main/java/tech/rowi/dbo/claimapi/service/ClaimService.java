@@ -25,11 +25,14 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class ClaimService {
 
-    private final RequestMapper mapper;
-    private final ClaimRepository repo;
     private final ClientService clientService;
-    private final TokenUtil tokenUtil;
     private final DocumentService documentService;
+    private final StatusHistoryService statusHistoryService;
+
+    private final ClaimRepository repo;
+
+    private final RequestMapper mapper;
+    private final TokenUtil tokenUtil;
 
     // 2
     public Page<Claim> getClaimsByFilters(ClaimFilterRequest request) {
@@ -77,6 +80,7 @@ public class ClaimService {
             documentService.saveAll(documents);
         }
 
+        statusHistoryService.save(claim);
 
         return claim.getId();
     }
