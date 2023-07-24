@@ -55,7 +55,7 @@ public class ClaimService {
     }
 
     // 4
-    public Long createClaim(ClaimPostRequest request) {
+    public Claim createClaim(ClaimPostRequest request) {
         Claim claim = mapper.postRequestToCreateClaim(request);
         claim.setStatus(StatusesEnum.NEW);
         claim.setStatusReason(StatusesEnum.NEW.getCode());
@@ -82,7 +82,7 @@ public class ClaimService {
 
         statusHistoryService.save(claim);
 
-        return claim.getId();
+        return claim;
     }
 
     //5
