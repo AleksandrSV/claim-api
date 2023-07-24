@@ -38,8 +38,12 @@ public class ClaimSpecifications {
             if (request.getAssignee() != null) {
                 predicate = criteriaBuilder.and(predicate, criteriaBuilder.equal(root.get("assignee"), request.getAssignee()));
             }
-
-
+            if (request.getPauseTillFrom() != null) {
+                predicate = criteriaBuilder.and(predicate, criteriaBuilder.greaterThanOrEqualTo(root.get("pauseTill"), request.getPauseTillFrom()));
+            }
+            if (request.getPauseTillTill() != null) {
+                predicate = criteriaBuilder.and(predicate, criteriaBuilder.lessThanOrEqualTo(root.get("pauseTill"), request.getPauseTillTill()));
+            }
             if (request.getClientInn() != null) {
                 predicate = criteriaBuilder.and(predicate, criteriaBuilder.equal(root.get("clientId").get("inn"), request.getClientInn()));
             }
