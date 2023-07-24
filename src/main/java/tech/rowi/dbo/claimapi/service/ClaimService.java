@@ -7,6 +7,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import tech.rowi.dbo.claimapi.dto.ClaimSpecifications;
+import tech.rowi.dbo.claimapi.dto.reference.PriorityEnum;
 import tech.rowi.dbo.claimapi.dto.reference.StatusesEnum;
 import tech.rowi.dbo.claimapi.dto.request.*;
 import tech.rowi.dbo.claimapi.mapper.RequestMapper;
@@ -104,7 +105,7 @@ public class ClaimService {
 
         repo.save(claim);
         documentService.saveAll(documents);
-        //statusHistory Create
+        statusHistoryService.save(claim);
         return claim.getId();
     }
 
@@ -116,7 +117,7 @@ public class ClaimService {
         claim.setAssignee(tokenUtil.getUsername());
         claim.setStatus(StatusesEnum.IN_PROGRESS);
         repo.save(claim);
-        //statusHistory Create
+        statusHistoryService.save(claim);
         return claim.getId();
     }
 
@@ -127,7 +128,7 @@ public class ClaimService {
         claim.setAssignee(assignee);
         claim.setStatus(StatusesEnum.IN_PROGRESS);
         repo.save(claim);
-        //statusHistory Create
+        statusHistoryService.save(claim);
         return claim.getId();
     }
 
@@ -139,7 +140,7 @@ public class ClaimService {
         claim.setStatus(StatusesEnum.DONE); // Просят сделать CLOSED, возможно новый Enum
         claim.setComment(claimForwardRequest.getComment());
         repo.save(claim);
-        //statusHistory Create
+        statusHistoryService.save(claim);
         return claim.getId();
     }
 
@@ -150,7 +151,19 @@ public class ClaimService {
         claim.setStatusReason(claimCloseRequest.getStatusReason());
         claim.setComment(claimCloseRequest.getComment());
         repo.save(claim);
-        //statusHistory Create
+        statusHistoryService.save(claim);
+        return claim.getId();
+    }
+
+    //9
+    public Long pauseClaim(ClaimPauseRequest claimPauseRequest, Long id) throws FileNotFoundException {
+        Claim claim = repo.findById(id).orElseThrow(()-> new FileNotFoundException("File not found"));
+        claim.setPriority(PriorityEnum.PAUSE);
+        claim.setStatus(StatusesEnum.PENDING);
+        claim.setPauseTill(claimPauseRequest.getPauseTill());
+        claim.setComment(claimPauseRequest.getComment());
+        repo.save(claim);
+        statusHistoryService.save(claim);
         return claim.getId();
     }
 }

@@ -74,13 +74,13 @@ public class ClaimController {
 
     // 8
     @PatchMapping(value = "/{id}/close", produces = "application/json")
-    public ResponseEntity<?> closeClaim(@RequestBody ClaimCloseRequest claimCloseRequest, @PathVariable Long id){
-        return ResponseEntity.ok("Закрыть обращение");
+    public ResponseEntity<?> closeClaim(@RequestBody ClaimCloseRequest claimCloseRequest, @PathVariable Long id) throws FileNotFoundException {
+        return ResponseEntity.ok(claimService.closeClaim(claimCloseRequest, id));
     }
 
     // 9
     @PatchMapping(value = "/{id}/pause", produces = "application/json")
-    public ResponseEntity<?> takeClaim(@PathVariable String id){
+    public ResponseEntity<?> takeClaim(@RequestBody ClaimPauseRequest claimPauseRequest, @PathVariable Long id){
         return ResponseEntity.ok("Перевести в ожидание");
     }
 }
