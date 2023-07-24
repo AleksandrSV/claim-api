@@ -138,4 +138,15 @@ public class ClaimService {
         //statusHistory Create
         return claim.getId();
     }
+
+    //8
+    public Long closeClaim(ClaimCloseRequest claimCloseRequest, Long id) throws FileNotFoundException {
+        Claim claim = repo.findById(id).orElseThrow(()-> new FileNotFoundException("File not found"));
+        claim.setStatus(claimCloseRequest.getStatus());
+        claim.setStatusReason(claimCloseRequest.getStatusReason());
+        claim.setComment(claimCloseRequest.getComment());
+        repo.save(claim);
+        //statusHistory Create
+        return claim.getId();
+    }
 }

@@ -4,10 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import tech.rowi.dbo.claimapi.dto.request.ClaimFilterRequest;
-import tech.rowi.dbo.claimapi.dto.request.ClaimForwardRequest;
-import tech.rowi.dbo.claimapi.dto.request.ClaimPostRequest;
-import tech.rowi.dbo.claimapi.dto.request.ClaimUpdateRequest;
+import tech.rowi.dbo.claimapi.dto.request.*;
 import tech.rowi.dbo.claimapi.model.Claim;
 import tech.rowi.dbo.claimapi.service.ClaimService;
 
@@ -77,7 +74,7 @@ public class ClaimController {
 
     // 8
     @PatchMapping(value = "/{id}/close", produces = "application/json")
-    public ResponseEntity<?> closeClaim(@PathVariable String id){
+    public ResponseEntity<?> closeClaim(@RequestBody ClaimCloseRequest claimCloseRequest, @PathVariable Long id){
         return ResponseEntity.ok("Закрыть обращение");
     }
 
