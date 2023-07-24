@@ -80,7 +80,7 @@ public class ClaimController {
 
     // 9
     @PatchMapping(value = "/{id}/pause", produces = "application/json")
-    public ResponseEntity<?> takeClaim(@RequestBody ClaimPauseRequest claimPauseRequest, @PathVariable Long id){
-        return ResponseEntity.ok("Перевести в ожидание");
+    public ResponseEntity<?> takeClaim(@RequestBody ClaimPauseRequest claimPauseRequest, @PathVariable Long id) throws FileNotFoundException {
+        return ResponseEntity.ok(claimService.pauseClaim(claimPauseRequest, id));
     }
 }
