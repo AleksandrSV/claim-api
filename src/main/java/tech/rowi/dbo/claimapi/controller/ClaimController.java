@@ -5,6 +5,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import tech.rowi.dbo.claimapi.dto.request.ClaimFilterRequest;
+import tech.rowi.dbo.claimapi.dto.request.ClaimForwardRequest;
 import tech.rowi.dbo.claimapi.dto.request.ClaimPostRequest;
 import tech.rowi.dbo.claimapi.dto.request.ClaimUpdateRequest;
 import tech.rowi.dbo.claimapi.model.Claim;
@@ -58,14 +59,20 @@ public class ClaimController {
 
     // 6
     @PatchMapping(value = "/{id}/assign", produces = "application/json")
-    public ResponseEntity<?> assignClaim(@PathVariable String id){
-        return ResponseEntity.ok("Взять обращение в работу");
+    public ResponseEntity<?> assignClaim(@PathVariable Long id) throws FileNotFoundException {
+        return ResponseEntity.ok(claimService.assignClaim(id));
     }
 
-    // 7
+    // 7.1
+    @PatchMapping(value = "/{id}/reassign", produces = "application/json")
+    public ResponseEntity<?> reassignClaim(@RequestBody String assignee, @PathVariable Long id) throws FileNotFoundException {
+        return ResponseEntity.ok(claimService.reassignClaim(assignee, id));
+    }
+
+    // 7.2
     @PatchMapping(value = "/{id}/forward", produces = "application/json")
-    public ResponseEntity<?> forwardClaim(@PathVariable String id){
-        return ResponseEntity.ok("Перевести в другое подразделение");
+    public ResponseEntity<?> forwardClaim(@RequestBody ClaimForwardRequest claimForwardRequest, @PathVariable Long id) throws FileNotFoundException {
+        return ResponseEntity.ok(claimService.forwardClaim(claimForwardRequest, id));
     }
 
     // 8
