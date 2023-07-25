@@ -20,7 +20,6 @@ import tech.rowi.dbo.claimapi.util.TokenUtil;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -51,18 +50,18 @@ public class ClaimService {
     }
 
     // 3
-    public Optional<Claim> getClaimById(Long id) {
-        return repo.findById(id);
+    public Claim getClaimById(Long id) throws FileNotFoundException {
+        return repo.findById(id).orElseThrow(() -> new FileNotFoundException("File not found"));
     }
 
     // 4
     public Claim createClaim(ClaimPostRequest request) {
-        Claim claim = mapper.postRequestToCreateClaim(request);
+        Claim claim = mapper.requestToClaim(request);
         claim.setStatus(StatusesEnum.NEW);
         claim.setStatusReason(StatusesEnum.NEW.getCode());
 
         if (request.getClient() != null) {
-            Client client = mapper.postRequestToClient(request.getClient());
+            Client client = mapper.requestToClient(request.getClient());
             client = clientService.save(client);
             claim.setClient(client);
         }
@@ -70,17 +69,31 @@ public class ClaimService {
         claim = repo.save(claim);
 
         if (request.getDocuments() != null) {
-            DocumentRequest[] docReq = request.getDocuments();
-            Document tmp;
-            List<Document> documents = new ArrayList<>();
-            for (int i = 0; i < docReq.length; i++) {
-                tmp = mapper.postRequestToDocument(docReq[i]);
-                tmp.setClaim(claim);
-                documents.add(tmp);
-            }
-            documentService.saveAll(documents);
+            documentService.saveAllFromRequest(request.getDocuments(), claim);
         }
 
+
+        statusHistoryService.save(claim);
+
+        return claim;
+    }
+
+    // 4
+    public Claim editClaim(ClaimPostRequest request, Long id) throws FileNotFoundException {
+        Claim claim = getClaimById(id);
+        claim = mapper.requestToClaim(request, claim);
+
+        if (request.getClient() != null) {
+            Client client = mapper.requestToClient(request.getClient(), claim.getClient());
+            client = clientService.save(client);
+            claim.setClient(client);
+        }
+
+        if (request.getDocuments() != null) {
+            documentService.saveAllFromRequest(request.getDocuments(), claim);
+        }
+
+        claim = repo.save(claim);
         statusHistoryService.save(claim);
 
         return claim;
@@ -88,8 +101,9 @@ public class ClaimService {
 
     //5
     public Claim updateClaim(ClaimUpdateRequest claimUpdateRequest, Long id) throws FileNotFoundException {
-        Claim claim = repo.findById(id).orElseThrow(() -> new FileNotFoundException("File not found"));
-        if (!claim.getAssignee().equals(tokenUtil.getUsername())) throw new IllegalArgumentException("Assignee != Username from token");
+        Claim claim = getClaimById(id);
+        if (!claim.getAssignee().equals(tokenUtil.getUsername()))
+            throw new IllegalArgumentException("Assignee != Username from token");
 
         claim.setPriority(claimUpdateRequest.getPriority());
         claim.setPriorityReason(claimUpdateRequest.getPriorityReason());
@@ -100,7 +114,7 @@ public class ClaimService {
         List<Document> documents = new ArrayList<>();
 
         for (DocumentRequest docReq : documentRequests) {
-            documents.add(mapper.updateRequestToDocument(docReq, claim));
+            documents.add(mapper.requestToDocument(docReq, claim));
         }
 
         repo.save(claim);
@@ -112,7 +126,7 @@ public class ClaimService {
 
     //6
     public Claim assignClaim(Long id) throws FileNotFoundException {
-        Claim claim = repo.findById(id).orElseThrow(() -> new FileNotFoundException("File not found"));
+        Claim claim = getClaimById(id);
         if (!(claim.getAssignee() == null)) throw new IllegalArgumentException("Assignee already exists");
         claim.setAssignee(tokenUtil.getUsername());
         claim.setStatus(StatusesEnum.IN_PROGRESS);
@@ -123,7 +137,7 @@ public class ClaimService {
 
     //7.1
     public Claim reassignClaim(String assignee, Long id) throws FileNotFoundException {
-        Claim claim = repo.findById(id).orElseThrow(() -> new FileNotFoundException("File not found"));
+        Claim claim = getClaimById(id);
         if (claim.getAssignee() == null)
             throw new IllegalArgumentException("We cannot reassign the claim as it is not assigned to anyone");
         claim.setAssignee(assignee);
@@ -135,7 +149,7 @@ public class ClaimService {
 
     //7.2
     public Claim forwardClaim(ClaimForwardRequest claimForwardRequest, Long id) throws FileNotFoundException {
-        Claim claim = repo.findById(id).orElseThrow(() -> new FileNotFoundException("File not found"));
+        Claim claim = getClaimById(id);
         if (claim.getAssignee() == null)
             throw new IllegalArgumentException("We cannot reassign the claim as it is not assigned to anyone");
         claim.setAssignee(claimForwardRequest.getAssignee().getCode());
@@ -148,7 +162,7 @@ public class ClaimService {
 
     //8
     public Claim closeClaim(ClaimCloseRequest claimCloseRequest, Long id) throws FileNotFoundException {
-        Claim claim = repo.findById(id).orElseThrow(()-> new FileNotFoundException("File not found"));
+        Claim claim = getClaimById(id);
         claim.setStatus(claimCloseRequest.getStatus());
         claim.setStatusReason(claimCloseRequest.getStatusReason());
         claim.setComment(claimCloseRequest.getComment());
@@ -159,7 +173,7 @@ public class ClaimService {
 
     //9
     public Claim pauseClaim(ClaimPauseRequest claimPauseRequest, Long id) throws FileNotFoundException {
-        Claim claim = repo.findById(id).orElseThrow(()-> new FileNotFoundException("File not found"));
+        Claim claim = getClaimById(id);
         claim.setPriority(PriorityEnum.PAUSE);
         claim.setStatus(StatusesEnum.PENDING);
         claim.setPauseTill(claimPauseRequest.getPauseTill());

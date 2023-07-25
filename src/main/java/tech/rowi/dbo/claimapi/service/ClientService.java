@@ -11,8 +11,8 @@ import tech.rowi.dbo.claimapi.repository.ClientRepository;
 public class ClientService {
     private final ClientRepository repo;
 
-    public Client save(Client client){
-        if(repo.exists(Example.of(client))){
+    public Client save(Client client) {
+        if (client.getId() == null && repo.exists(Example.of(client))) {
             return repo.findOne(Example.of(client)).get();
         }
         return repo.save(client);

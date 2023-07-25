@@ -28,11 +28,8 @@ public class ClaimController {
 
     // 3
     @GetMapping("/{id}")
-    public ResponseEntity<?> getClaimById(@PathVariable Long id){
-        Optional<Claim> claim = claimService.getClaimById(id);
-        if(claim.isEmpty())
-            return ResponseEntity.status(404).body("Not found");
-        return ResponseEntity.ok(claim.get());
+    public ResponseEntity<?> getClaimById(@PathVariable Long id) throws FileNotFoundException {
+        return ResponseEntity.ok(claimService.getClaimById(id));
     }
 
     // 4
@@ -44,8 +41,8 @@ public class ClaimController {
 
     // editing
     @PostMapping(value = "/{id}", produces = "application/json")
-    public ResponseEntity<?> editClaim(@PathVariable String id){
-        return ResponseEntity.ok("Редактирование обращения");
+    public ResponseEntity<?> editClaim(@RequestBody ClaimPostRequest request, @PathVariable Long id) throws FileNotFoundException {
+        return ResponseEntity.ok(claimService.editClaim(request, id));
     }
 
     // 5
