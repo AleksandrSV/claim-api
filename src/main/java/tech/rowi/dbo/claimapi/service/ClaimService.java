@@ -39,7 +39,7 @@ public class ClaimService {
         int pageNum = 0;
         int pageSize = 10;
         if (request.getPageNum() != null) {
-            pageNum = request.getPageNum();
+            pageNum = request.getPageNum()-1;
         }
         if (request.getPageSize() != null) {
             pageSize = request.getPageSize();
@@ -127,8 +127,9 @@ public class ClaimService {
     //6
     public Claim assignClaim(Long id) throws FileNotFoundException {
         Claim claim = getClaimById(id);
-        if (!(claim.getAssignee() == null)) throw new IllegalArgumentException("Assignee already exists");
-        claim.setAssignee(tokenUtil.getUsername());
+        if (claim.getAssignee() == null){
+            claim.setAssignee(tokenUtil.getUsername());
+        }
         claim.setStatus(StatusesEnum.IN_PROGRESS);
         repo.save(claim);
         statusHistoryService.save(claim);
@@ -136,11 +137,11 @@ public class ClaimService {
     }
 
     //7.1
-    public Claim reassignClaim(String assignee, Long id) throws FileNotFoundException {
+    public Claim reassignClaim(ClaimReassignRequest claimReassignRequest, Long id) throws FileNotFoundException {
         Claim claim = getClaimById(id);
         if (claim.getAssignee() == null)
             throw new IllegalArgumentException("We cannot reassign the claim as it is not assigned to anyone");
-        claim.setAssignee(assignee);
+        claim.setAssignee(claimReassignRequest.getAssignee());
         claim.setStatus(StatusesEnum.IN_PROGRESS);
         repo.save(claim);
         statusHistoryService.save(claim);

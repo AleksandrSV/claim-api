@@ -8,6 +8,7 @@ import tech.rowi.dbo.claimapi.dto.request.*;
 import tech.rowi.dbo.claimapi.model.Claim;
 import tech.rowi.dbo.claimapi.service.ClaimService;
 
+import javax.validation.Valid;
 import java.io.FileNotFoundException;
 import java.util.List;
 import java.util.Optional;
@@ -20,7 +21,7 @@ public class ClaimController {
 
     // 2
     @GetMapping
-    public ResponseEntity<?> getClaims(@RequestBody ClaimFilterRequest request) {
+    public ResponseEntity<?> getClaims(@Valid @RequestBody ClaimFilterRequest request) {
         Page<Claim> claimsPage = claimService.getClaimsByFilters(request);
         List<Claim> claimsList = claimsPage.getContent();
         return ResponseEntity.ok(claimsList);
@@ -35,19 +36,19 @@ public class ClaimController {
     // 4
     // creating
     @PostMapping(produces = "application/json")
-    public ResponseEntity<?> createClaim(@RequestBody ClaimPostRequest request){
+    public ResponseEntity<?> createClaim(@Valid @RequestBody ClaimPostRequest request){
         return ResponseEntity.ok(claimService.createClaim(request));
     }
 
     // editing
     @PostMapping(value = "/{id}", produces = "application/json")
-    public ResponseEntity<?> editClaim(@RequestBody ClaimPostRequest request, @PathVariable Long id) throws FileNotFoundException {
+    public ResponseEntity<?> editClaim(@Valid @RequestBody ClaimPostRequest request, @PathVariable Long id) throws FileNotFoundException {
         return ResponseEntity.ok(claimService.editClaim(request, id));
     }
 
     // 5
     @PatchMapping(value = "/{id}/update", produces = "application/json")
-    public ResponseEntity<?> patchClaim(@RequestBody ClaimUpdateRequest claimUpdateRequest, @PathVariable Long id) throws FileNotFoundException {
+    public ResponseEntity<?> patchClaim(@Valid @RequestBody ClaimUpdateRequest claimUpdateRequest, @PathVariable Long id) throws FileNotFoundException {
         return ResponseEntity.ok(claimService.updateClaim(claimUpdateRequest, id));
     }
 
@@ -59,19 +60,19 @@ public class ClaimController {
 
     // 7.1
     @PatchMapping(value = "/{id}/reassign", produces = "application/json")
-    public ResponseEntity<?> reassignClaim(@RequestBody String assignee, @PathVariable Long id) throws FileNotFoundException {
-        return ResponseEntity.ok(claimService.reassignClaim(assignee, id));
+    public ResponseEntity<?> reassignClaim(@Valid @RequestBody ClaimReassignRequest claimReassignRequest, @PathVariable Long id) throws FileNotFoundException {
+        return ResponseEntity.ok(claimService.reassignClaim(claimReassignRequest, id));
     }
 
     // 7.2
     @PatchMapping(value = "/{id}/forward", produces = "application/json")
-    public ResponseEntity<?> forwardClaim(@RequestBody ClaimForwardRequest claimForwardRequest, @PathVariable Long id) throws FileNotFoundException {
+    public ResponseEntity<?> forwardClaim(@Valid @RequestBody ClaimForwardRequest claimForwardRequest, @PathVariable Long id) throws FileNotFoundException {
         return ResponseEntity.ok(claimService.forwardClaim(claimForwardRequest, id));
     }
 
     // 8
     @PatchMapping(value = "/{id}/close", produces = "application/json")
-    public ResponseEntity<?> closeClaim(@RequestBody ClaimCloseRequest claimCloseRequest, @PathVariable Long id) throws FileNotFoundException {
+    public ResponseEntity<?> closeClaim(@Valid @RequestBody ClaimCloseRequest claimCloseRequest, @PathVariable Long id) throws FileNotFoundException {
         return ResponseEntity.ok(claimService.closeClaim(claimCloseRequest, id));
     }
 
