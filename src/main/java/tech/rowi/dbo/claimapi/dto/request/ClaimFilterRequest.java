@@ -7,7 +7,6 @@ import tech.rowi.dbo.claimapi.dto.reference.*;
 
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Positive;
 import java.time.LocalDateTime;
