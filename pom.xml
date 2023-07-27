@@ -13,7 +13,7 @@
 
     <groupId>tech.rowi.dbo</groupId>
     <artifactId>claim-api</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0</version>
     <name>claim-api</name>
     <description>MS for claims management</description>
 
