@@ -8,9 +8,9 @@ spring:
     enabled: true
     change-log: classpath:db/changelog/db.changelog-master.yml
   datasource:
-    url: jdbc:postgresql://localhost:5432/claim-api
-    username: postgres
-    password: postgres
+    url: jdbc:postgresql://localhost:5432/claim-api-db
+    username: admin
+    password: password
   jpa:
     database: postgresql
     database-platform: org.hibernate.dialect.PostgreSQL10Dialect
