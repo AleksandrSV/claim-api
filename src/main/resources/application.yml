@@ -21,25 +21,6 @@ spring:
     deserialization:
       READ_UNKNOWN_ENUM_VALUES_AS_NULL: true
 
-  servlet:
-    cors:
-      allowed-origins:
-        - "http://localhost:8080"
-        - "http://*.rko.svc"
-        - "https://*.rko.rowi.tech"
-      allowed-methods:
-        - "GET"
-        - "POST"
-        - "PATCH"
-      allowed-headers:
-        - "*"
-      allow-credentials: true
-
-security:
-  config:
-    password-flow: true
-    authcode-flow: false
-
 keycloak:
   auth-server-url: https://keycloak.yamakassi.ru
   realm: claimapi
