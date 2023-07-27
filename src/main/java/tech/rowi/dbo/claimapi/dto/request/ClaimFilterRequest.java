@@ -2,6 +2,7 @@ package tech.rowi.dbo.claimapi.dto.request;
 
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import tech.rowi.dbo.claimapi.dto.reference.*;
 
@@ -12,6 +13,7 @@ import javax.validation.constraints.Positive;
 import java.time.LocalDateTime;
 
 @Data
+@AllArgsConstructor
 public class ClaimFilterRequest {
     @Positive
     private Integer pageNum;
