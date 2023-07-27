@@ -39,7 +39,7 @@ public class ClaimService {
         int pageNum = 0;
         int pageSize = 10;
         if (request.getPageNum() != null) {
-            pageNum = request.getPageNum()-1;
+            pageNum = request.getPageNum() - 1;
         }
         if (request.getPageSize() != null) {
             pageSize = request.getPageSize();
@@ -59,6 +59,10 @@ public class ClaimService {
         Claim claim = mapper.requestToClaim(request);
         claim.setStatus(StatusesEnum.NEW);
         claim.setStatusReason(StatusesEnum.NEW.getCode());
+
+        if (claim.getAssignee() == null) {
+            claim.setAssignee(tokenUtil.getUsername());
+        }
 
         if (request.getClient() != null) {
             Client client = mapper.requestToClient(request.getClient());
@@ -127,9 +131,6 @@ public class ClaimService {
     //6
     public Claim assignClaim(Long id) throws FileNotFoundException {
         Claim claim = getClaimById(id);
-        if (claim.getAssignee() == null){
-            claim.setAssignee(tokenUtil.getUsername());
-        }
         claim.setStatus(StatusesEnum.IN_PROGRESS);
         repo.save(claim);
         statusHistoryService.save(claim);

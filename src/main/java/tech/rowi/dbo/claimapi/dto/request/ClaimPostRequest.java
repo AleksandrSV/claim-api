@@ -21,6 +21,7 @@ public class ClaimPostRequest {
     private String comment;
     @Positive
     private Integer serviceCount;
+    @NotNull
     private PriorityEnum priority;
     @JsonProperty("priority_reason")
     private String priorityReason;
